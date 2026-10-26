@@ -87,8 +87,8 @@ export class AudioManager {
   }
 
   /**
-   * 2. 磁吸拖曳吸附泡泡音 (Snap)
-   * 快速滑音 (260Hz -> 650Hz)，增強觸控反饋手感
+   * 2. 捕手手套接球啪聲 / 磁吸音 (Snap / Glove Pop)
+   * 低頻皮革拍擊共鳴 + 快速上揚音 (180Hz -> 580Hz)，增強觸控反饋手感
    */
   public static playSnap(): void {
     if (this.isMuted) return;
@@ -99,11 +99,11 @@ export class AudioManager {
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
 
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(260, t);
-    osc.frequency.exponentialRampToValueAtTime(650, t + 0.08);
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(180, t);
+    osc.frequency.exponentialRampToValueAtTime(580, t + 0.08);
 
-    gain.gain.setValueAtTime(0.18, t);
+    gain.gain.setValueAtTime(0.22, t);
     gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
 
     osc.connect(gain);
@@ -119,27 +119,47 @@ export class AudioManager {
   }
 
   /**
-   * 3. 答對時的陽光三和弦琶音 (Correct - C5, E5, G5)
-   * 快樂正向激勵，低年級專用
+   * 3. 揮棒安打清脆木棒擊球音 + 陽光三和弦琶音 (Bat Crack + Hit Chord)
+   * 結合清脆球棒敲擊瞬態與快樂上壘旋律
    */
   public static playCorrect(): void {
     if (this.isMuted) return;
     this.init();
     if (!this.ctx || !this.masterGain) return;
 
-    const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
     const baseTime = this.ctx.currentTime;
 
+    // (A) 球棒清脆擊球聲 (木棒高频短促敲擊 1100Hz -> 320Hz)
+    const crackOsc = this.ctx.createOscillator();
+    const crackGain = this.ctx.createGain();
+    crackOsc.type = 'triangle';
+    crackOsc.frequency.setValueAtTime(1100, baseTime);
+    crackOsc.frequency.exponentialRampToValueAtTime(320, baseTime + 0.045);
+
+    crackGain.gain.setValueAtTime(0.32, baseTime);
+    crackGain.gain.exponentialRampToValueAtTime(0.0001, baseTime + 0.05);
+
+    crackOsc.connect(crackGain);
+    crackGain.connect(this.masterGain);
+    crackOsc.onended = () => {
+      crackOsc.disconnect();
+      crackGain.disconnect();
+    };
+    crackOsc.start(baseTime);
+    crackOsc.stop(baseTime + 0.05);
+
+    // (B) 安打上壘歡快琶音 (C5, E5, G5, C6)
+    const notes = [523.25, 659.25, 783.99, 1046.5];
     notes.forEach((freq, idx) => {
       const osc = this.ctx!.createOscillator();
       const gain = this.ctx!.createGain();
-      const t = baseTime + idx * 0.08;
+      const t = baseTime + 0.04 + idx * 0.07;
 
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, t);
 
-      gain.gain.setValueAtTime(0.15, t);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
+      gain.gain.setValueAtTime(0.16, t);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.24);
 
       osc.connect(gain);
       gain.connect(this.masterGain!);
@@ -150,7 +170,48 @@ export class AudioManager {
       };
 
       osc.start(t);
-      osc.stop(t + 0.25);
+      osc.stop(t + 0.24);
+    });
+  }
+
+  /**
+   * 3b. 全壘打棒球場經典電子風琴應援號角 (Charge! Fanfare: G4-C5-E5-G5-E5-G5)
+   */
+  public static playHomeRun(): void {
+    if (this.isMuted) return;
+    this.init();
+    if (!this.ctx || !this.masterGain) return;
+
+    this.playCorrect();
+    const chargeNotes = [
+      { f: 392.0, d: 0.1 },  // G4
+      { f: 523.25, d: 0.1 }, // C5
+      { f: 659.25, d: 0.1 }, // E5
+      { f: 783.99, d: 0.22 },// G5
+      { f: 659.25, d: 0.12 },// E5
+      { f: 783.99, d: 0.45 },// G5!
+    ];
+
+    let t = this.ctx.currentTime + 0.12;
+    chargeNotes.forEach((n) => {
+      const osc = this.ctx!.createOscillator();
+      const gain = this.ctx!.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(n.f, t);
+
+      gain.gain.setValueAtTime(0.2, t);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + n.d);
+
+      osc.connect(gain);
+      gain.connect(this.masterGain!);
+      osc.onended = () => {
+        osc.disconnect();
+        gain.disconnect();
+      };
+
+      osc.start(t);
+      osc.stop(t + n.d);
+      t += n.d * 0.92;
     });
   }
 

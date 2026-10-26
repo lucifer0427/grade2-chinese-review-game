@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Volume2, Sparkles, Check } from 'lucide-react';
 import { CurriculumQuestion, QuestionOption } from '../../core/Types';
 import { RubyText } from '../common/RubyText';
@@ -26,6 +26,11 @@ export const DragSlotBoard: React.FC<DragSlotBoardProps> = ({
 }) => {
   const [placedOption, setPlacedOption] = useState<QuestionOption | null>(null);
 
+  // 切換題目時重設手套卡槽狀態，避免連續兩題 drag-slot 時殘留上一題選項
+  useEffect(() => {
+    setPlacedOption(null);
+  }, [question.id]);
+
   // 分割 sentenceTemplate 成前後兩段（依 [___] 切分）
   const template = question.sentenceTemplate || '請將答案放入[___]中。';
   const parts = template.split('[___]');
@@ -46,17 +51,21 @@ export const DragSlotBoard: React.FC<DragSlotBoardProps> = ({
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col items-center gap-6">
-      {/* 題幹提示 */}
-      <div className="w-full bg-white/95 rounded-3xl p-6 sm:p-8 border-3 border-amber-300 shadow-card flex flex-col items-center text-center relative">
+      {/* 捕手接球好球帶題幹提示 */}
+      <div className="w-full bg-white rounded-3xl p-6 sm:p-8 border-4 border-emerald-600 shadow-card flex flex-col items-center text-center relative">
+        <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 bg-amber-500 text-amber-950 px-3 py-1 rounded-full text-xs font-black tracking-wider shadow-sm">
+          <span>🧤 捕手接球填空</span>
+        </div>
+
         <button
           onClick={handlePlayPrompt}
-          className="absolute right-4 top-4 p-2.5 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-800 transition-all active:scale-95 shadow-sm"
+          className="absolute right-4 top-4 p-2.5 rounded-2xl bg-emerald-100 hover:bg-emerald-200 text-emerald-900 transition-all active:scale-95 shadow-sm"
           title="朗讀題目"
         >
           <Volume2 className="w-6 h-6" />
         </button>
 
-        <div className="text-xl sm:text-2xl font-bold text-storybook-wood leading-relaxed my-2 max-w-2xl">
+        <div className="text-xl sm:text-2xl font-bold text-storybook-wood leading-relaxed my-2 max-w-2xl pt-4">
           <RubyText
             text={question.prompt}
             zhuyin={question.promptZhuyin}
@@ -65,16 +74,16 @@ export const DragSlotBoard: React.FC<DragSlotBoardProps> = ({
           />
         </div>
 
-        {/* 句子填空卡槽舞台 */}
-        <div className="mt-4 p-5 sm:p-6 bg-amber-50/80 rounded-2xl border-2 border-amber-200/80 w-full flex flex-wrap items-center justify-center gap-2 text-2xl sm:text-3xl font-bold text-storybook-wood leading-relaxed">
+        {/* 句子填空捕手手套卡槽舞台 */}
+        <div className="mt-4 p-5 sm:p-6 bg-emerald-50/90 rounded-2xl border-2 border-emerald-300 w-full flex flex-wrap items-center justify-center gap-2 text-2xl sm:text-3xl font-bold text-storybook-wood leading-relaxed">
           {prefix && (
             <RubyText text={prefix} size="lg" showZhuyin={showZhuyin} />
           )}
 
-          {/* 磁吸卡槽本體 */}
+          {/* 捕手手套磁吸卡槽本體 */}
           <div
             className={`
-              min-w-[140px] min-h-[64px] px-4 py-2 rounded-2xl border-3 border-dashed
+              min-w-[150px] min-h-[64px] px-4 py-2 rounded-2xl border-3 border-dashed
               flex items-center justify-center transition-all duration-200
               ${
                 placedOption
@@ -83,12 +92,13 @@ export const DragSlotBoard: React.FC<DragSlotBoardProps> = ({
                     : isCorrect === false
                     ? 'bg-amber-100 border-amber-500 animate-wobble'
                     : 'bg-white border-amber-400 shadow-inner'
-                  : 'bg-amber-200/40 border-amber-400/80 animate-pulse'
+                  : 'bg-amber-100/70 border-amber-500 animate-pulse'
               }
             `}
           >
             {placedOption ? (
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg">⚾</span>
                 <RubyText
                   text={placedOption.text}
                   zhuyin={placedOption.zhuyin}
@@ -97,8 +107,8 @@ export const DragSlotBoard: React.FC<DragSlotBoardProps> = ({
                 />
               </div>
             ) : (
-              <span className="text-sm font-bold text-amber-700/60 tracking-wider">
-                【點選卡片放入】
+              <span className="text-sm font-black text-amber-800 tracking-wider">
+                🧤【點選棒球接入】
               </span>
             )}
           </div>

@@ -64,7 +64,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-storybook-cream flex flex-col justify-between selection:bg-amber-300">
+    <div className="min-h-screen bg-stadium-turf flex flex-col justify-between selection:bg-amber-300">
       {/* 頂部全域功能導航列 */}
       <TopNavBar
         totalStars={progress.totalStars}
@@ -75,7 +75,7 @@ export const App: React.FC = () => {
         onBackToMap={view !== 'map' ? handleBackToMap : undefined}
         onOpenNotebook={() => handleOpenNotebook('words')}
         onOpenSettings={() => setIsSettingsOpen(true)}
-        title={view === 'stage' ? undefined : '語文冒險島'}
+        title={view === 'stage' ? undefined : '⚾ 語文少棒大聯盟'}
       />
 
       {/* 主視圖路由分流 */}
@@ -103,6 +103,7 @@ export const App: React.FC = () => {
             progress={progress}
             initialTab={notebookTab}
             onBackToMap={handleBackToMap}
+            onUpdateProgress={(newP) => setProgress(newP)}
             showZhuyin={zhuyinEnabled}
           />
         )}

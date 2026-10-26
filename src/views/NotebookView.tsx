@@ -11,6 +11,7 @@ interface NotebookViewProps {
   progress: UserProgress;
   initialTab?: 'words' | 'mistakes';
   onBackToMap: () => void;
+  onUpdateProgress?: (updated: UserProgress) => void;
   showZhuyin: boolean;
 }
 
@@ -18,6 +19,7 @@ export const NotebookView: React.FC<NotebookViewProps> = ({
   progress,
   initialTab = 'words',
   onBackToMap,
+  onUpdateProgress,
   showZhuyin,
 }) => {
   const [tab, setTab] = useState<'words' | 'mistakes'>(initialTab);
@@ -37,6 +39,9 @@ export const NotebookView: React.FC<NotebookViewProps> = ({
       AudioManager.playCorrect();
       setPracticeAnswered(true);
       StorageManager.resolveMistake(question.id);
+      if (onUpdateProgress) {
+        onUpdateProgress(StorageManager.getProgress());
+      }
       setTimeout(() => {
         setActivePracticeQ(null);
         setPracticeAnswered(null);
@@ -66,7 +71,7 @@ export const NotebookView: React.FC<NotebookViewProps> = ({
         </button>
 
         {/* 標籤頁切換鈕 */}
-        <div className="flex items-center bg-amber-100 p-1.5 rounded-2xl border border-amber-300">
+        <div className="flex items-center bg-emerald-900 p-1.5 rounded-2xl border-2 border-amber-400">
           <button
             onClick={() => {
               AudioManager.playClick();
@@ -76,11 +81,11 @@ export const NotebookView: React.FC<NotebookViewProps> = ({
             className={`flex items-center gap-2 px-5 py-2 rounded-xl font-black text-base transition-all ${
               tab === 'words'
                 ? 'bg-amber-400 text-amber-950 shadow-sm'
-                : 'text-amber-800 hover:bg-amber-200/60'
+                : 'text-emerald-100 hover:bg-emerald-800'
             }`}
           >
             <BookMarked className="w-5 h-5" />
-            <span>生字存摺 ({wordList.length})</span>
+            <span>⚾ 球員生字卡 ({wordList.length})</span>
           </button>
 
           <button
@@ -92,69 +97,74 @@ export const NotebookView: React.FC<NotebookViewProps> = ({
             className={`flex items-center gap-2 px-5 py-2 rounded-xl font-black text-base transition-all ${
               tab === 'mistakes'
                 ? 'bg-amber-400 text-amber-950 shadow-sm'
-                : 'text-amber-800 hover:bg-amber-200/60'
+                : 'text-emerald-100 hover:bg-emerald-800'
             }`}
           >
             <AlertCircle className="w-5 h-5" />
-            <span>錯題救援本 ({mistakeList.length})</span>
+            <span>🧤 牛棚特訓營 ({mistakeList.length})</span>
           </button>
         </div>
       </div>
 
-      {/* 生字存摺列表 */}
+      {/* 球員生字卡列表 */}
       {tab === 'words' && (
         <div className="w-full">
           {wordList.length === 0 ? (
-            <div className="text-center py-16 bg-white/80 rounded-3xl border-2 border-amber-200 p-8 shadow-sm">
-              <BookMarked className="w-16 h-16 text-amber-300 mx-auto mb-3" />
-              <h3 className="text-2xl font-black text-amber-950 mb-1">
-                存摺裡還沒有收錄生字喔！
+            <div className="text-center py-16 bg-white rounded-3xl border-3 border-emerald-300 p-8 shadow-sm">
+              <BookMarked className="w-16 h-16 text-emerald-400 mx-auto mb-3" />
+              <h3 className="text-2xl font-black text-emerald-950 mb-1">
+                球員卡冊裡還沒有收錄生字卡喔！
               </h3>
-              <p className="text-amber-800 font-medium mb-6">
-                快去探索關卡，完成答題就能把新字收進你的智慧存摺！
+              <p className="text-emerald-800 font-medium mb-6">
+                快去巡迴賽球場上場打擊，擊出安打就能簽下新球員生字卡！
               </p>
-              <BigButton onClick={onBackToMap}>前往闖關</BigButton>
+              <BigButton onClick={onBackToMap}>🏏 前往球場打擊</BigButton>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {wordList.map((word) => (
+              {wordList.map((word, idx) => (
                 <div
                   key={word.char}
-                  className="bg-white p-5 rounded-3xl border-2 border-amber-200 hover:border-amber-400 shadow-sm flex flex-col justify-between gap-3 transition-all hover:shadow-md"
+                  className="bg-white p-5 rounded-3xl border-3 border-emerald-400 hover:border-amber-400 shadow-md flex flex-col justify-between gap-3 transition-all hover:shadow-lg relative overflow-hidden"
                 >
                   <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <RubyText
-                        text={word.char}
-                        zhuyin={word.zhuyin}
-                        size="2xl"
-                        showZhuyin={showZhuyin}
-                      />
+                    <div className="flex flex-col gap-1">
+                      <span className="inline-block text-[11px] font-black text-white bg-emerald-700 px-2 py-0.5 rounded-full w-fit">
+                        ⚾ 背號 #{String(idx + 1).padStart(2, '0')} 球員卡
+                      </span>
+                      <div className="flex items-center gap-3 mt-1">
+                        <RubyText
+                          text={word.char}
+                          zhuyin={word.zhuyin}
+                          size="2xl"
+                          showZhuyin={showZhuyin}
+                        />
+                      </div>
                     </div>
                     <button
                       onClick={() => handleSpeakWord(word)}
-                      className="p-2 rounded-xl text-amber-700 hover:bg-amber-100 transition-colors"
-                      title="發音與字義"
+                      className="p-2 rounded-xl text-emerald-700 hover:bg-emerald-100 transition-colors"
+                      title="發音與球探報告"
                     >
                       <Volume2 className="w-5 h-5" />
                     </button>
                   </div>
 
-                  <div className="text-sm font-bold text-amber-900/80 bg-amber-50 p-2.5 rounded-xl border border-amber-100">
+                  <div className="text-sm font-bold text-emerald-950 bg-emerald-50 p-3 rounded-2xl border border-emerald-200">
                     <div>
-                      部首：<span className="text-amber-700">{word.radical}部</span>
+                      守備部首：<span className="text-rose-700">{word.radical}部</span>
                     </div>
                     <div>
-                      部首外筆畫：<span className="text-amber-700">{word.strokeCount} 畫</span>
+                      部首外筆畫：<span className="text-emerald-700">{word.strokeCount} 畫</span>
                       {word.totalStrokes && (
-                        <span className="text-xs text-amber-600 ml-1">
+                        <span className="text-xs text-emerald-600 ml-1">
                           （共 {word.totalStrokes} 畫）
                         </span>
                       )}
                     </div>
                     {word.meaning && (
-                      <div className="mt-1 text-xs text-amber-800 font-medium border-t border-amber-200/60 pt-1">
-                        釋義：{word.meaning}
+                      <div className="mt-1.5 text-xs text-emerald-900 font-medium border-t border-emerald-200 pt-1.5">
+                        球探報告：{word.meaning}
                       </div>
                     )}
                   </div>

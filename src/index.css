@@ -73,3 +73,26 @@
 .animate-bounce-gentle {
   animation: bounce-gentle 2s ease-in-out infinite;
 }
+
+/* 6. 棒球飛出全壘打軌跡 */
+@keyframes homerun-fly {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: translate(60px, -90px) scale(1.35) rotate(180deg); opacity: 1; }
+  100% { transform: translate(140px, -160px) scale(0.6) rotate(360deg); opacity: 0; }
+}
+
+.animate-homerun {
+  animation: homerun-fly 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* 7. 棒球場草皮條紋背景 */
+.bg-stadium-turf {
+  background-color: #ecfdf5;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.06) 0px,
+    rgba(16, 185, 129, 0.06) 32px,
+    transparent 32px,
+    transparent 64px
+  );
+}

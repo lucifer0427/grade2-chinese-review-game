@@ -8,16 +8,16 @@ export default {
     extend: {
       colors: {
         storybook: {
-          cream: '#FFFBEB',    // 溫暖米黃底色
-          paper: '#FEF3C7',    // 柔和牛皮紙
-          orange: '#FB923C',   // 柿子暖橘
-          green: '#86EFAC',    // 森林嫩綠
-          greenDark: '#16A34A',// 深森綠
-          blue: '#93C5FD',     // 晴空粉藍
-          blueDark: '#2563EB', // 墨水深藍
-          pink: '#F472B6',     // 櫻花粉紅
-          wood: '#78350F',     // 原木色字體
-          brown: '#92400E',
+          cream: '#F0FDF4',    // 清新外野草皮淺綠底色
+          paper: '#FEF3C7',    // 內野紅土米黃
+          orange: '#EA580C',   // 紅土橘紅
+          green: '#22C55E',    // 球場翠綠
+          greenDark: '#15803D',// 球場深綠
+          blue: '#38BDF8',     // 晴空藍
+          blueDark: '#1E3A8A', // 記分板深海軍藍
+          pink: '#E11D48',     // 棒球縫線紅
+          wood: '#451A03',     // 球棒深胡桃木色
+          brown: '#9A3412',    // 紅土棕
         }
       },
       fontFamily: {

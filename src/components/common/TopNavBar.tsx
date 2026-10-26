@@ -26,7 +26,7 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
   title,
 }) => {
   return (
-    <header className="sticky top-0 z-30 w-full bg-amber-50/90 backdrop-blur-md border-b-2 border-amber-200/80 px-4 py-2.5 shadow-sm">
+    <header className="sticky top-0 z-30 w-full bg-emerald-900/95 backdrop-blur-md border-b-4 border-amber-400 px-4 py-2.5 shadow-md text-white">
       <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
         {/* 左側：返回或標題 */}
         <div className="flex items-center gap-2">
@@ -36,16 +36,16 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
                 AudioManager.playClick();
                 onBackToMap();
               }}
-              className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-white hover:bg-amber-100 text-storybook-wood font-bold border-2 border-amber-300 shadow-sm active:scale-95 transition-all text-base min-h-[44px]"
-              title="返回語文冒險地圖"
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-amber-950 font-black border-2 border-amber-200 shadow-sm active:scale-95 transition-all text-base min-h-[44px]"
+              title="返回巡迴賽球場地圖"
             >
-              <ArrowLeft className="w-5 h-5 text-amber-700" />
-              <span className="hidden sm:inline">地圖</span>
+              <ArrowLeft className="w-5 h-5 text-amber-950" />
+              <span className="hidden sm:inline">回球場地圖</span>
             </button>
           )}
 
           {title && (
-            <h1 className="text-xl sm:text-2xl font-black text-amber-900 tracking-wide truncate ml-1">
+            <h1 className="text-xl sm:text-2xl font-black text-amber-300 tracking-wide truncate ml-1 drop-shadow-sm">
               {title}
             </h1>
           )}
@@ -53,26 +53,26 @@ export const TopNavBar: React.FC<TopNavBarProps> = ({
 
         {/* 右側：星星統計與功能切換鈕 */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* 星星計數牌 */}
-          <div className="flex items-center gap-1.5 bg-amber-100/90 border-2 border-amber-300 px-3 py-1.5 rounded-2xl shadow-inner min-h-[44px]">
-            <Star className="w-5 h-5 fill-amber-400 text-amber-500 animate-pulse" />
-            <span className="font-black text-amber-900 text-lg sm:text-xl font-mono">
+          {/* MVP 星星計數牌 */}
+          <div className="flex items-center gap-1.5 bg-emerald-950/90 border-2 border-amber-400 px-3 py-1.5 rounded-2xl shadow-inner min-h-[44px]">
+            <Star className="w-5 h-5 fill-amber-400 text-amber-400 animate-pulse" />
+            <span className="font-black text-amber-300 text-lg sm:text-xl font-mono">
               {totalStars}
             </span>
           </div>
 
-          {/* 生字存摺捷徑 */}
+          {/* 球員生字圖鑑捷徑 */}
           {onOpenNotebook && (
             <button
               onClick={() => {
                 AudioManager.playClick();
                 onOpenNotebook();
               }}
-              className="p-2 sm:px-3 sm:py-2 rounded-2xl bg-white hover:bg-emerald-50 text-emerald-800 font-bold border-2 border-emerald-300 shadow-sm active:scale-95 transition-all flex items-center gap-1.5 min-h-[44px]"
-              title="查看生字存摺與錯題本"
+              className="p-2 sm:px-3 sm:py-2 rounded-2xl bg-white hover:bg-emerald-50 text-emerald-900 font-black border-2 border-emerald-300 shadow-sm active:scale-95 transition-all flex items-center gap-1.5 min-h-[44px]"
+              title="查看球員生字卡與牛棚特訓營"
             >
-              <BookMarked className="w-5 h-5 text-emerald-600" />
-              <span className="hidden md:inline text-sm">存摺</span>
+              <BookMarked className="w-5 h-5 text-emerald-700" />
+              <span className="hidden md:inline text-sm">球員卡冊</span>
             </button>
           )}
 

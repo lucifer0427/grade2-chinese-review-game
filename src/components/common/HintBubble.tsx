@@ -28,13 +28,13 @@ export const HintBubble: React.FC<HintBubbleProps> = ({
 
       <div className="flex-1 pt-1">
         <div className="flex items-center gap-2 mb-1">
-          <span className="text-xs font-black uppercase tracking-wider text-amber-800 bg-amber-200/80 px-2 py-0.5 rounded-md">
-            提示小錦囊
+          <span className="text-xs font-black uppercase tracking-wider text-white bg-emerald-700 px-2.5 py-0.5 rounded-md">
+            🧢 總教練戰術暗號
           </span>
           <button
             onClick={handleSpeak}
             className="p-1 rounded-full text-amber-700 hover:text-amber-900 hover:bg-amber-200 transition-colors"
-            title="朗讀提示"
+            title="朗讀教練提示"
           >
             <Volume2 className="w-4 h-4" />
           </button>

@@ -26,10 +26,17 @@ export const SequenceBoard: React.FC<SequenceBoardProps> = ({
   const [items, setItems] = useState<QuestionOption[]>([]);
 
   useEffect(() => {
-    // 預設將原本順序稍微打亂，確保需要學童排列
-    const shuffled = [...question.options].sort(() => 0.5 - Math.random());
-    setItems(shuffled);
-  }, [question]);
+    // 使用 Fisher-Yates 洗牌，並確保不會剛好洗成已排好的正確順序
+    const arr = [...question.options];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    if (arr.length > 1 && arr.every((item, idx) => item.orderIndex === idx)) {
+      [arr[0], arr[1]] = [arr[1], arr[0]];
+    }
+    setItems(arr);
+  }, [question.id]);
 
   const handlePlayPrompt = () => {
     AudioManager.playClick();
@@ -68,17 +75,21 @@ export const SequenceBoard: React.FC<SequenceBoardProps> = ({
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col items-center gap-6">
-      {/* 題幹提示 */}
-      <div className="w-full bg-white/95 rounded-3xl p-6 sm:p-8 border-3 border-amber-300 shadow-card flex flex-col items-center text-center relative">
+      {/* 先發打序排列題幹提示 */}
+      <div className="w-full bg-white rounded-3xl p-6 sm:p-8 border-4 border-emerald-600 shadow-card flex flex-col items-center text-center relative">
+        <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 bg-emerald-700 text-white px-3 py-1 rounded-full text-xs font-black tracking-wider shadow-sm">
+          <span>📋 先發打序排列</span>
+        </div>
+
         <button
           onClick={handlePlayPrompt}
-          className="absolute right-4 top-4 p-2.5 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-800 transition-all active:scale-95 shadow-sm"
+          className="absolute right-4 top-4 p-2.5 rounded-2xl bg-emerald-100 hover:bg-emerald-200 text-emerald-900 transition-all active:scale-95 shadow-sm"
           title="朗讀題目"
         >
           <Volume2 className="w-6 h-6" />
         </button>
 
-        <div className="text-xl sm:text-2xl font-bold text-storybook-wood leading-relaxed my-2 max-w-2xl">
+        <div className="text-xl sm:text-2xl font-bold text-storybook-wood leading-relaxed my-2 max-w-2xl pt-4">
           <RubyText
             text={question.prompt}
             zhuyin={question.promptZhuyin}
@@ -86,12 +97,12 @@ export const SequenceBoard: React.FC<SequenceBoardProps> = ({
             showZhuyin={showZhuyin}
           />
         </div>
-        <p className="text-sm font-semibold text-amber-700 bg-amber-100/70 px-3 py-1 rounded-full mt-2">
-          💡 點擊右側的「▲ 上移」或「▼ 下移」按鈕來調整順序喔！
+        <p className="text-sm font-bold text-emerald-800 bg-emerald-100 px-3.5 py-1 rounded-full mt-2">
+          ⚾ 點擊右側的「▲ 上移」或「▼ 下移」按鈕，排好第 1 棒到最後一棒的順序！
         </p>
       </div>
 
-      {/* 排序卡片清單 */}
+      {/* 棒次排序卡片清單 */}
       <div className="w-full flex flex-col gap-3">
         {items.map((item, index) => {
           const isSlotRight = isCorrect === true && item.orderIndex === index;
@@ -108,13 +119,13 @@ export const SequenceBoard: React.FC<SequenceBoardProps> = ({
                     ? 'bg-emerald-100 border-3 border-emerald-500 text-emerald-950 animate-squash'
                     : isCorrect === false
                     ? 'bg-amber-50 border-3 border-amber-400 text-amber-950'
-                    : 'bg-white border-3 border-amber-200 hover:border-amber-400 text-storybook-wood'
+                    : 'bg-white border-3 border-emerald-200 hover:border-amber-400 text-storybook-wood'
                 }
               `}
             >
-              {/* 序號標記 */}
-              <div className="w-9 h-9 rounded-2xl bg-amber-200/80 text-amber-900 flex items-center justify-center font-black text-lg shrink-0">
-                {index + 1}
+              {/* 棒次序號標記 */}
+              <div className="px-3 h-9 rounded-2xl bg-amber-400 text-amber-950 flex items-center justify-center font-black text-sm shrink-0 shadow-sm">
+                第 {index + 1} 棒
               </div>
 
               {/* 步驟文字 */}
