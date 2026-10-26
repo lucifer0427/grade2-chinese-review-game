@@ -23,7 +23,7 @@
 | **@Curriculum-Architect (教材專家)** | 解析 `raws/康軒二上國語教材評析.md`，將部首、字詞、句型、標點轉化為結構化關卡題庫。 | `src/data/curriculum/` 題庫 JSON 與知識圖譜 Schema。 | `save-systems`（題庫 Schema 與版本相容規範） |
 | **@Game-Designer (遊戲企劃)** | 設計適合 7~8 歲學童之核心機制（操作直覺、正向回饋、微步進階、防呆防挫折）。 | 關卡規則書、回饋機制、關卡星級與成就系統規範。 | `game-feel`（正向獎勵、微步進階、挫折緩衝） |
 | **@Engine-Developer (前端工程師)** | 建立 Vite + TypeScript + TailwindCSS / Canvas 輕量遊戲引擎核心、狀態機與路由。 | `src/core/` 遊戲循環、狀態機、LocalStorage 管理器。 | `input-systems`（觸控點選雙模）、`save-systems`（安全存檔機制） |
-| **@UI-UX-Designer (互動美工師)** | 規劃高對比、大觸控熱區、注音排版相容介面與音效合成控制器。 | `src/components/`、動畫 CSS、Web Audio 合成音效腳本。 | `game-ui-ux`（觸控螢幕安全區）、`audio-design`（Web Audio 防爆音）、`create-game-assets`（向量繪本文風） |
+| **@UI-UX-Designer (互動美工師)** | 規劃高對比、大觸控熱區、注音排版相容介面與音效合成控制器。 | `src/components/`、動畫 CSS、Web Audio 合成音效腳本。 | `game-ui-ux`（觸控螢幕安全區）、`audio-design`（Web Audio 防爆音）、`chinese-storybook-illustrator`（繪本插畫資產規範） |
 | **@QA-Accessibility (品管與無障礙)** | 驗證低年級觸控誤觸防護、跨平台解析度適配（16:9 / 4:3）、離線可用性與程式無錯。 | 測試用例、自動化驗證腳本、效能檢核報告。 | `game-ui-ux`、`input-systems` |
 
 ---
@@ -45,8 +45,10 @@
    - 抑制行動裝置橡皮筋回彈與雙擊放大（`touch-action: none`）。
 5. **`save-systems`** (`.agents/skills/save-systems/SKILL.md`)：
    - LocalStorage 存取容錯、資料庫結構升級遷移、支援 JSON 匯出匯入以利課堂教學還原。
-6. **`create-game-assets`** (`.agents/skills/create-game-assets/SKILL.md`)：
-   - 純內聯 SVG 圖元規格與柔和繪本色盤標準。
+6. **`chinese-storybook-illustrator`** (`.agents/skills/chinese-storybook-illustrator/SKILL.md`)：
+   - 專門規範低年級兒童繪本文風（柿餅、曹沖象、黑面琵鷺）。
+   - **第一鐵律：純圖像語言，畫面 100% 嚴禁生成任何 AI 亂碼文字/注音**。
+   - 單張 WebP 限制 $< 30\text{ KB}$。
 
 ---
 
