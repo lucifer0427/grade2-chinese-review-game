@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none">
+  <defs>
+    <linearGradient id="sky0" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#BAE6FD"/>
+      <stop offset="100%" stop-color="#FEF3C7"/>
+    </linearGradient>
+    <linearGradient id="foliage" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#86EFAC"/>
+      <stop offset="100%" stop-color="#15803D"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Sky -->
+  <rect width="640" height="360" fill="url(#sky0)"/>
+  <!-- Gentle Green Hill -->
+  <path d="M0 240 Q180 180 360 230 T640 220 L640 360 L0 360 Z" fill="#BBF7D0"/>
+  <path d="M0 270 Q240 230 480 270 T640 260 L640 360 L0 360 Z" fill="#86EFAC"/>
+  <!-- Ancient Hollow Tree Trunk -->
+  <path d="M260 360 Q270 200 240 120 Q320 100 400 120 Q370 200 380 360 Z" fill="#92400E"/>
+  <ellipse cx="320" cy="230" rx="36" ry="50" fill="#78350F"/>
+  <!-- Colorful Magic Scrolls inside hollow -->
+  <rect x="300" y="210" width="12" height="30" rx="4" fill="#F472B6"/>
+  <rect x="315" y="200" width="12" height="42" rx="4" fill="#60A5FA"/>
+  <rect x="330" y="215" width="12" height="26" rx="4" fill="#FBBF24"/>
+  <!-- Foliage Canopy -->
+  <circle cx="210" cy="90" r="70" fill="url(#foliage)"/>
+  <circle cx="430" cy="90" r="70" fill="url(#foliage)"/>
+  <circle cx="320" cy="60" r="85" fill="#4ADE80"/>
+  <!-- Warm Sunlight Sparkles -->
+  <circle cx="160" cy="80" r="4" fill="#FEF08A"/>
+  <circle cx="480" cy="70" r="5" fill="#FEF08A"/>
+  <circle cx="380" cy="40" r="6" fill="#FDE047"/>
+</svg>

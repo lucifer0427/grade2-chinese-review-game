@@ -1,0 +1,247 @@
+[
+  {
+    "id": "s4-q01",
+    "unitId": 4,
+    "lessonId": 10,
+    "focusType": "letter",
+    "mechanicType": "sequence",
+    "prompt": "【黑琵信差郵局】寫一張完整合格的賀年卡，請將書信的格式依序由上至下排好：",
+    "options": [
+      {
+        "id": "s4-q01-step1",
+        "text": "1. 稱謂（親愛的爺爺奶奶：頂格書寫）",
+        "zhuyin": "ㄑㄧㄣ ㄞˋ ˙ㄉㄜ ㄧㄝˊ ㄧㄝ˙ ㄋㄞˇ ㄋㄞ˙",
+        "isCorrect": true,
+        "orderIndex": 0,
+        "hint": "第一行頂格寫收件人的稱謂！"
+      },
+      {
+        "id": "s4-q01-step2",
+        "text": "2. 問候語（您好！空兩格表達敬意）",
+        "zhuyin": "ㄋㄧㄣˊ ㄏㄠˇ",
+        "isCorrect": true,
+        "orderIndex": 1,
+        "hint": "開頭問候長輩身體健康！"
+      },
+      {
+        "id": "s4-q01-step3",
+        "text": "3. 正文（新年到了，我好想念你們……）",
+        "zhuyin": "ㄓㄥˋ ㄨㄣˊ",
+        "isCorrect": true,
+        "orderIndex": 2,
+        "hint": "接著寫信件想要傳達的核心內容！"
+      },
+      {
+        "id": "s4-q01-step4",
+        "text": "4. 祝福語（祝您 新年快樂、萬事如意）",
+        "zhuyin": "ㄓㄨˋ ㄋㄧㄣˊ ㄒㄧㄣ ㄋㄧㄢˊ ㄎㄨㄞˋ ㄌㄜˋ",
+        "isCorrect": true,
+        "orderIndex": 3,
+        "hint": "換行獻上吉祥真摯的祝福！"
+      },
+      {
+        "id": "s4-q01-step5",
+        "text": "5. 署名與日期（孫子小明敬上、一月一日）",
+        "zhuyin": "ㄕㄨˇ ㄇㄧㄥˊ ㄩˇ ㄖˋ ㄑㄧˊ",
+        "isCorrect": true,
+        "orderIndex": 4,
+        "hint": "右下角簽上自己的名字和寄信日期！"
+      }
+    ],
+    "audioPromptText": "寫一張完整合格的賀年卡，請將書信的格式依序由上至下排好"
+  },
+  {
+    "id": "s4-q02",
+    "unitId": 4,
+    "lessonId": 11,
+    "focusType": "idiom",
+    "mechanicType": "drag-slot",
+    "prompt": "運用「像……一樣……」的比喻修辭，將黑面琵鷺扁平特殊的嘴喙生動描繪出來：",
+    "sentenceTemplate": "黑面琵鷺的黑色嘴巴，[___]，在水裡輕巧撈魚。",
+    "targetWord": {
+      "char": "遠",
+      "zhuyin": "ㄩㄢˇ",
+      "radical": "辵",
+      "strokeCount": 10,
+      "totalStrokes": 14,
+      "meaning": "距離長、時間久"
+    },
+    "options": [
+      {
+        "id": "s4-q02-opt1",
+        "text": "像一把神奇的琵琶一樣",
+        "zhuyin": "ㄒㄧㄤˋ ㄧ ㄅㄚˇ ㄕㄣˊ ㄑㄧˊ ˙ㄉㄜ ㄆㄧˊ ㄆㄚˊ ㄧ ㄧㄤˋ",
+        "isCorrect": true,
+        "hint": "觀察入微！牠的嘴巴形狀真的長得像國樂樂器「琵琶」！"
+      },
+      {
+        "id": "s4-q02-opt2",
+        "text": "像一顆圓圓的足球一樣",
+        "zhuyin": "ㄒㄧㄤˋ ㄧ ㄎㄜ ㄩㄢˊ ㄩㄢˊ ˙ㄉㄜ ㄗㄨˊ ㄑㄧㄡˊ ㄧ ㄧㄤˋ",
+        "isCorrect": false,
+        "hint": "黑琵的嘴巴是扁長湯匙形，不是圓圓的球喔！"
+      },
+      {
+        "id": "s4-q02-opt3",
+        "text": "像一座巨大的高山一樣",
+        "zhuyin": "ㄒㄧㄤˋ ㄧ ㄗㄨㄛˋ ㄐㄩˋ ㄉㄚˋ ˙ㄉㄜ ㄍㄠ ㄕㄢ ㄧ ㄧㄤˋ",
+        "isCorrect": false,
+        "hint": "高山太大太硬了，不能比喻鳥兒靈活的小嘴巴！"
+      }
+    ],
+    "audioPromptText": "黑面琵鷺的黑色嘴巴，空格，在水裡輕巧撈魚。"
+  },
+  {
+    "id": "s4-q03",
+    "unitId": 4,
+    "lessonId": 12,
+    "focusType": "components",
+    "mechanicType": "choice",
+    "prompt": "【啄木鳥捉錯字】下列哪一個句子中有錯別字？",
+    "targetWord": {
+      "char": "冬",
+      "zhuyin": "ㄉㄨㄥ",
+      "radical": "夂",
+      "strokeCount": 3,
+      "totalStrokes": 5,
+      "meaning": "一年四季中的最後一季"
+    },
+    "options": [
+      {
+        "id": "s4-q03-opt1",
+        "text": "寒冷的冬天到了，大「象」穿上厚外套。",
+        "zhuyin": "ㄉㄚˋ ㄒㄧㄤˋ ㄔㄨㄢ ㄕㄤˋ ㄏㄡˋ ㄨㄞˋ ㄊㄠˋ",
+        "isCorrect": false,
+        "hint": "這句的字全部都寫對了喔！"
+      },
+      {
+        "id": "s4-q03-opt2",
+        "text": "小明寄了一張賀年「卞」給好朋友。",
+        "zhuyin": "ㄒㄧㄠˇ ㄇㄧㄥˊ ㄐㄧˋ ㄌㄜ˙ ㄧ ㄓㄤ ㄏㄜˋ ㄋㄧㄢˊ ㄅㄧㄢˋ",
+        "isCorrect": true,
+        "hint": "抓到了！賀年「卡」被寫成了「卞」，卡是一上一橫一豎（卡片），不是卞喔！"
+      },
+      {
+        "id": "s4-q03-opt3",
+        "text": "候鳥從遙遠的北方飛來台灣過冬。",
+        "zhuyin": "ㄏㄡˋ ㄋㄧㄠˇ ㄘㄨㄥˊ ㄧㄠˊ ㄩㄢˇ ˙ㄉㄜ ㄅㄟˇ ㄈㄤ",
+        "isCorrect": false,
+        "hint": "這句話字體端正，完全正確！"
+      }
+    ],
+    "audioPromptText": "下列哪一個句子中有錯別字？"
+  },
+  {
+    "id": "s4-q04",
+    "unitId": 4,
+    "lessonId": 11,
+    "focusType": "reading",
+    "mechanicType": "choice",
+    "prompt": "每年秋末冬初，珍貴的保育類黑面琵鷺會飛到台灣的哪裡度冬？",
+    "targetWord": {
+      "char": "候",
+      "zhuyin": "ㄏㄡˋ",
+      "radical": "人",
+      "strokeCount": 8,
+      "totalStrokes": 10,
+      "meaning": "隨季節規律遷徙的鳥類，如候鳥"
+    },
+    "options": [
+      {
+        "id": "s4-q04-opt1",
+        "text": "台南曾文溪口濕地",
+        "zhuyin": "ㄊㄞˊ ㄋㄢˊ ㄗㄥ ㄨㄣˊ ㄒㄧ ㄎㄡˇ ㄕㄧ Shiˋ",
+        "isCorrect": true,
+        "hint": "答對了！台南曾文溪口豐富的魚蝦濕地是黑面琵鷺最愛的度假樂園！",
+        "ttsOverride": "台南曾文溪口濕地"
+      },
+      {
+        "id": "s4-q04-opt2",
+        "text": "阿里山頂峰最高處",
+        "zhuyin": "ㄚ ㄌㄧˇ ㄕㄢ ㄉㄧㄥˇ ㄈㄥ",
+        "isCorrect": false,
+        "hint": "黑面琵鷺是水鳥，需要有淺水灘才能抓魚蝦，不是高山喔！"
+      },
+      {
+        "id": "s4-q04-opt3",
+        "text": "熱鬧的台北地下街商場",
+        "zhuyin": "ㄊㄞˊ ㄅㄟˇ ㄉㄧˋ ㄒㄧㄚˋ ㄐㄧㄝ",
+        "isCorrect": false,
+        "hint": "野生候鳥生活在大自然濕地環境中！"
+      }
+    ],
+    "audioPromptText": "每年秋冬，珍貴的黑面琵鷺會飛到台灣的哪裡度冬？"
+  },
+  {
+    "id": "s4-q05",
+    "unitId": 4,
+    "lessonId": 10,
+    "focusType": "letter",
+    "mechanicType": "choice",
+    "prompt": "在寫信給「爺爺奶奶」長輩時，下列哪一種結尾祝詞最恭敬合適？",
+    "targetWord": {
+      "char": "信",
+      "zhuyin": "ㄒㄧㄣˋ",
+      "radical": "人",
+      "strokeCount": 7,
+      "totalStrokes": 9,
+      "meaning": "書信、卡片、誠懇"
+    },
+    "options": [
+      {
+        "id": "s4-q05-opt1",
+        "text": "敬祝 身體健康 福壽安康",
+        "zhuyin": "ㄐㄧㄥˋ ㄓㄨˋ ㄕㄣ ㄊㄧˇ ㄐㄧㄢˋ ㄎㄤ",
+        "isCorrect": true,
+        "hint": "很懂事！對長輩要用「敬祝」，祈求長輩身體健康！"
+      },
+      {
+        "id": "s4-q05-opt2",
+        "text": "祝你 考試一百分",
+        "zhuyin": "ㄓㄨˋ ㄋㄧˇ ㄎㄠˇ ㄕˋ ㄧ ㄅㄞˇ ㄈㄣ",
+        "isCorrect": false,
+        "hint": "這是祝福平輩同學的祝詞，爺爺奶奶不用考試喔！"
+      },
+      {
+        "id": "s4-q05-opt3",
+        "text": "祝你 生意興隆大發財",
+        "zhuyin": "ㄓㄨˋ ㄋㄧˇ ㄕㄥ ㄧˋ ㄒㄧㄥ ㄌㄨㄥˊ",
+        "isCorrect": false,
+        "hint": "這是給商家的祝詞，對長輩要表達溫馨健康關懷！"
+      }
+    ],
+    "audioPromptText": "在寫信給爺爺奶奶長輩時，下列哪一種結尾祝詞最恭敬合適？"
+  },
+  {
+    "id": "s4-q06",
+    "unitId": 4,
+    "lessonId": 12,
+    "focusType": "components",
+    "mechanicType": "choice",
+    "prompt": "「屋」和「室」都是住家空間，但下半部部件不同。「教室」的「室」，下半部是什麼部件？",
+    "options": [
+      {
+        "id": "s4-q06-opt1",
+        "text": "至",
+        "zhuyin": "ㄓˋ",
+        "isCorrect": true,
+        "hint": "答對了！室是宀部加「至」，屋則是尸部加「至」喔！"
+      },
+      {
+        "id": "s4-q06-opt2",
+        "text": "土",
+        "zhuyin": "ㄊㄨˇ",
+        "isCorrect": false,
+        "hint": "「至」的最底下有一橫，是完整的「至」部件！"
+      },
+      {
+        "id": "s4-q06-opt3",
+        "text": "口",
+        "zhuyin": "ㄎㄡˇ",
+        "isCorrect": false,
+        "hint": "室的下面不是口，而是「至」喔！"
+      }
+    ],
+    "audioPromptText": "教室的室，下半部是什麼部件？"
+  }
+]

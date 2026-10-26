@@ -20,7 +20,7 @@
 
 | Agent 角色 | 核心職責 | 關鍵交付物 | 強制調用 Skill (依賴準則) |
 | :--- | :--- | :--- | :--- |
-| **@Curriculum-Architect (教材專家)** | 解析 `raws/康軒二上國語教材評析.md`，將部首、字詞、句型、標點轉化為結構化關卡題庫。 | `src/data/curriculum/` 題庫 JSON 與知識圖譜 Schema。 | `save-systems`（題庫 Schema 與版本相容規範） |
+| **@Curriculum-Architect (教材專家)** | 解析 `raws/康軒二上國語教材評析.md`，將部首、字詞、句型、標點轉化為結構化關卡題庫。 | `src/data/stages/` 題庫 JSON 與知識圖譜 Schema。 | `save-systems`（題庫 Schema 與版本相容規範） |
 | **@Game-Designer (遊戲企劃)** | 設計適合 7~8 歲學童之核心機制（操作直覺、正向回饋、微步進階、防呆防挫折）。 | 關卡規則書、回饋機制、關卡星級與成就系統規範。 | `game-feel`（正向獎勵、微步進階、挫折緩衝） |
 | **@Engine-Developer (前端工程師)** | 建立 Vite + TypeScript + TailwindCSS / Canvas 輕量遊戲引擎核心、狀態機與路由。 | `src/core/` 遊戲循環、狀態機、LocalStorage 管理器。 | `input-systems`（觸控點選雙模）、`save-systems`（安全存檔機制） |
 | **@UI-UX-Designer (互動美工師)** | 規劃高對比、大觸控熱區、注音排版相容介面與音效合成控制器。 | `src/components/`、動畫 CSS、Web Audio 合成音效腳本。 | `game-ui-ux`（觸控螢幕安全區）、`audio-design`（Web Audio 防爆音）、`chinese-storybook-illustrator`（繪本插畫資產規範） |
@@ -70,27 +70,47 @@
 
 ## 4. 題庫資料格式標準（JSON Schema）
 
-所有題庫檔案統一存放在 `src/data/stages/`，嚴格遵守 TypeScript 型別：
+所有題庫檔案統一存放在 `src/data/stages/`，嚴格遵守 TypeScript 型別（支援單選、雙模拖曳填空與順序排列）：
 
 ```typescript
+export type FocusType =
+  | 'radical'
+  | 'components'
+  | 'homophone'
+  | 'punctuation'
+  | 'syntax'
+  | 'idiom'
+  | 'letter'
+  | 'reading';
+
+export type MechanicType = 'choice' | 'drag-slot' | 'sequence';
+
 export interface CurriculumQuestion {
   id: string;                      // 例: "u1-l2-char-01"
-  unitId: number;                  // 0 ~ 4 (0: 查字典, 1~4: 單元一至四)
+  unitId: number;                  // 0 ~ 5 (0: 查字典, 1~4: 單元一至四, 5: 閱讀階梯)
   lessonId: number;                // 課次
-  focusType: 'radical' | 'components' | 'homophone' | 'punctuation' | 'syntax' | 'idiom';
-  prompt: string;                  // 題目說明 (可含 HTML 或純文字)
+  focusType: FocusType;
+  mechanicType: MechanicType;      // 決定調用哪個互動組件
+  prompt: string;                  // 題目說明
+  promptZhuyin?: string;           // 重點詞注音輔助
+  passage?: string;                // 閱讀階梯或情境短文段落
+  sentenceTemplate?: string;       // 用於 drag-slot，例: "媽媽一邊[___]，一邊聽音樂。"
   targetWord?: {
     char: string;                  // 國字
     zhuyin: string;                // 注音
     radical: string;               // 部首
     strokeCount: number;           // 部首外筆畫
+    totalStrokes?: number;         // 總筆畫
+    meaning?: string;              // 字義或造詞範例
   };
   options: Array<{
     id: string;
     text: string;
     zhuyin?: string;
     isCorrect: boolean;
+    orderIndex?: number;           // sequence 排序題中的正確順序 (0, 1, 2...)
     hint: string;                  // 錯答時的反饋引導
+    ttsOverride?: string;          // 防止 TTS 破音字讀錯的替代發音字串
   }>;
   audioPromptText?: string;        // TTS 朗讀文本
 }

@@ -1,7 +1,11 @@
 /**
  * 國小二年級國語教育遊戲 - Web Audio API 純程式合成音效引擎
- * 依據 audio-design 與五上自然專案架構精煉打造
- * 特性：零外部音訊檔案依賴、零網路延遲、低年級正向柔和音色、內建防爆音 Gain Envelope
+ * 依據 audio-design 與低年級正向教育體驗打造
+ * 特性：
+ * 1. 零外部音訊檔案依賴、零網路延遲
+ * 2. 低年級正向柔和音色 (正弦波與三角波為主，無尖銳蜂鳴)
+ * 3. 內建防爆音 Gain Envelope
+ * 4. 節點自動回收機制 (onended 自動 disconnect)，防高頻觸控記憶體洩漏
  */
 
 export class AudioManager {
@@ -14,7 +18,9 @@ export class AudioManager {
    */
   public static init(): void {
     if (!this.ctx) {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (AudioCtx) {
         this.ctx = new AudioCtx();
         this.masterGain = this.ctx.createGain();
@@ -38,6 +44,13 @@ export class AudioManager {
     return this.isMuted;
   }
 
+  public static setMuted(muted: boolean): void {
+    this.isMuted = muted;
+    if (this.masterGain && this.ctx) {
+      this.masterGain.gain.setValueAtTime(this.isMuted ? 0 : 0.2, this.ctx.currentTime);
+    }
+  }
+
   public static getMuted(): boolean {
     return this.isMuted;
   }
@@ -59,10 +72,15 @@ export class AudioManager {
     osc.frequency.setValueAtTime(880, t);
 
     gain.gain.setValueAtTime(0.12, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
 
     osc.connect(gain);
     gain.connect(this.masterGain);
+
+    osc.onended = () => {
+      osc.disconnect();
+      gain.disconnect();
+    };
 
     osc.start(t);
     osc.stop(t + 0.05);
@@ -86,10 +104,15 @@ export class AudioManager {
     osc.frequency.exponentialRampToValueAtTime(650, t + 0.08);
 
     gain.gain.setValueAtTime(0.18, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.09);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
 
     osc.connect(gain);
     gain.connect(this.masterGain);
+
+    osc.onended = () => {
+      osc.disconnect();
+      gain.disconnect();
+    };
 
     osc.start(t);
     osc.stop(t + 0.09);
@@ -116,10 +139,15 @@ export class AudioManager {
       osc.frequency.setValueAtTime(freq, t);
 
       gain.gain.setValueAtTime(0.15, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
 
       osc.connect(gain);
       gain.connect(this.masterGain!);
+
+      osc.onended = () => {
+        osc.disconnect();
+        gain.disconnect();
+      };
 
       osc.start(t);
       osc.stop(t + 0.25);
@@ -144,10 +172,15 @@ export class AudioManager {
     osc.frequency.linearRampToValueAtTime(220, t + 0.18);
 
     gain.gain.setValueAtTime(0.12, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
 
     osc.connect(gain);
     gain.connect(this.masterGain);
+
+    osc.onended = () => {
+      osc.disconnect();
+      gain.disconnect();
+    };
 
     osc.start(t);
     osc.stop(t + 0.18);
@@ -173,11 +206,17 @@ export class AudioManager {
     osc2.frequency.setValueAtTime(1318.51, t); // E6
 
     gain.gain.setValueAtTime(0.15, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.35);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.35);
 
     osc1.connect(gain);
     osc2.connect(gain);
     gain.connect(this.masterGain);
+
+    osc1.onended = () => {
+      osc1.disconnect();
+      osc2.disconnect();
+      gain.disconnect();
+    };
 
     osc1.start(t);
     osc2.start(t);
@@ -198,7 +237,7 @@ export class AudioManager {
       { f: 523.25, d: 0.12 }, // C5
       { f: 659.25, d: 0.12 }, // E5
       { f: 783.99, d: 0.12 }, // G5
-      { f: 1046.5, d: 0.38 }  // C6
+      { f: 1046.5, d: 0.38 }, // C6
     ];
 
     let currentT = this.ctx.currentTime;
@@ -210,10 +249,15 @@ export class AudioManager {
       osc.frequency.setValueAtTime(note.f, currentT);
 
       gain.gain.setValueAtTime(0.18, currentT);
-      gain.gain.exponentialRampToValueAtTime(0.001, currentT + note.d);
+      gain.gain.exponentialRampToValueAtTime(0.0001, currentT + note.d);
 
       osc.connect(gain);
       gain.connect(this.masterGain!);
+
+      osc.onended = () => {
+        osc.disconnect();
+        gain.disconnect();
+      };
 
       osc.start(currentT);
       osc.stop(currentT + note.d);

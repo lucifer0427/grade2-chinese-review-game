@@ -1,0 +1,223 @@
+[
+  {
+    "id": "s0-q01",
+    "unitId": 0,
+    "lessonId": 0,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "「跑」這個生字的部首是什麼呢？",
+    "promptZhuyin": "ㄆㄠˇ",
+    "targetWord": {
+      "char": "跑",
+      "zhuyin": "ㄆㄠˇ",
+      "radical": "足",
+      "strokeCount": 5,
+      "totalStrokes": 12,
+      "meaning": "用腳快步向前移動"
+    },
+    "options": [
+      {
+        "id": "s0-q01-opt1",
+        "text": "足部",
+        "zhuyin": "ㄗㄨˊ ㄅㄨˋ",
+        "isCorrect": true,
+        "hint": "太棒了！跑步要用腳，所以部首是「足部」喔！"
+      },
+      {
+        "id": "s0-q01-opt2",
+        "text": "包部",
+        "zhuyin": "ㄅㄠ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "注意看右邊的「包」是負責發音的部件，跑步需要用雙腳，所以部首在左邊的「足」喔！"
+      },
+      {
+        "id": "s0-q01-opt3",
+        "text": "口部",
+        "zhuyin": "ㄎㄡˇ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "想一想，跑步是用嘴巴還是腳呢？部首通常代表字的意思喔！"
+      }
+    ],
+    "audioPromptText": "跑這個生字的部首是什麼呢？"
+  },
+  {
+    "id": "s0-q02",
+    "unitId": 0,
+    "lessonId": 0,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "想一想，「海」這個字除去部首「水（氵）」之後，剩餘筆畫是多少畫呢？",
+    "promptZhuyin": "ㄏㄞˇ",
+    "targetWord": {
+      "char": "海",
+      "zhuyin": "ㄏㄞˇ",
+      "radical": "水",
+      "strokeCount": 7,
+      "totalStrokes": 10,
+      "meaning": "大洋靠近陸地的廣大水域"
+    },
+    "options": [
+      {
+        "id": "s0-q02-opt1",
+        "text": "7 畫",
+        "zhuyin": "ㄑㄧ ㄏㄨㄚˋ",
+        "isCorrect": true,
+        "hint": "答對了！右邊的「每」共有七畫，所以查字典要查水部 7 畫喔！"
+      },
+      {
+        "id": "s0-q02-opt2",
+        "text": "6 畫",
+        "zhuyin": "ㄌㄧㄡˋ ㄏㄨㄚˋ",
+        "isCorrect": false,
+        "hint": "我們一起數數右邊的「每」：撇、橫、豎折、撇、橫折鉤、點、橫、點，總共有七畫喔！"
+      },
+      {
+        "id": "s0-q02-opt3",
+        "text": "10 畫",
+        "zhuyin": "ㄕˊ ㄏㄨㄚˋ",
+        "isCorrect": false,
+        "hint": "10 畫是「海」的全部筆畫喔！查字典時要先扣掉三點水（3畫），剩餘 7 畫！"
+      }
+    ],
+    "audioPromptText": "想一想，海這個字除去部首水之後，剩餘筆畫是多少畫呢？"
+  },
+  {
+    "id": "s0-q03",
+    "unitId": 0,
+    "lessonId": 0,
+    "focusType": "syntax",
+    "mechanicType": "sequence",
+    "prompt": "請依照「部首查字典三步驟」口訣，將步驟依序排好：",
+    "options": [
+      {
+        "id": "s0-q03-step1",
+        "text": "一步取部首",
+        "zhuyin": "ㄧ ㄅㄨˋ ㄑㄩˇ ㄅㄨˋ ㄕㄡˇ",
+        "isCorrect": true,
+        "orderIndex": 0,
+        "hint": "先找出這個字的部首是什麼。"
+      },
+      {
+        "id": "s0-q03-step2",
+        "text": "二步數外畫",
+        "zhuyin": "ㄦˋ ㄅㄨˋ ㄕㄨˇ ㄨㄞˋ ㄏㄨㄚˋ",
+        "isCorrect": true,
+        "orderIndex": 1,
+        "hint": "扣掉部首後，數一數剩下的筆畫有幾畫。"
+      },
+      {
+        "id": "s0-q03-step3",
+        "text": "三步翻頁碼",
+        "zhuyin": "ㄙㄢ ㄅㄨˋ ㄈㄢ ㄧㄝˋ ㄇㄚˇ",
+        "isCorrect": true,
+        "orderIndex": 2,
+        "hint": "在檢字表找到頁碼，翻到那一頁查讀音與字義！"
+      }
+    ],
+    "audioPromptText": "請依照部首查字典三步驟口訣，將步驟依序排好"
+  },
+  {
+    "id": "s0-q04",
+    "unitId": 0,
+    "lessonId": 0,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "「花」、「草」、「芽」這三個字，都有相同的部首，通常和什麼有關？",
+    "options": [
+      {
+        "id": "s0-q04-opt1",
+        "text": "植物與花草",
+        "zhuyin": "ㄓˊ ㄨˋ ㄩˇ ㄏㄨㄚ ㄘㄠˇ",
+        "isCorrect": true,
+        "hint": "沒錯！「艸」部（艹）的字大多和植物生長有關。"
+      },
+      {
+        "id": "s0-q04-opt2",
+        "text": "金屬與工具",
+        "zhuyin": "ㄐㄧㄣ ㄕㄨˇ ㄩˇ ㄍㄨㄥ ㄐㄩˋ",
+        "isCorrect": false,
+        "hint": "金屬工具通常是「金部」喔！草字頭是綠色植物的代表。"
+      },
+      {
+        "id": "s0-q04-opt3",
+        "text": "江河與水流",
+        "zhuyin": "ㄐㄧㄤ ㄏㄜˊ ㄩˇ ㄕㄨㄟˇ ㄌㄧㄡˊ",
+        "isCorrect": false,
+        "hint": "江河水流通常是「水部（氵）」喔！"
+      }
+    ],
+    "audioPromptText": "花、草、芽這三個字都有相同的部首，通常和什麼有關？"
+  },
+  {
+    "id": "s0-q05",
+    "unitId": 0,
+    "lessonId": 0,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "「樹」這個字的部首是什麼呢？",
+    "targetWord": {
+      "char": "樹",
+      "zhuyin": "ㄕㄨˋ",
+      "radical": "木",
+      "strokeCount": 12,
+      "totalStrokes": 16,
+      "meaning": "木本植物的通稱"
+    },
+    "options": [
+      {
+        "id": "s0-q05-opt1",
+        "text": "木部",
+        "zhuyin": "ㄇㄨˋ ㄅㄨˋ",
+        "isCorrect": true,
+        "hint": "答對了！大樹是木本植物，所以部首是木部！"
+      },
+      {
+        "id": "s0-q05-opt2",
+        "text": "寸部",
+        "zhuyin": "ㄘㄨㄣˋ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "右邊的「寸」只是右下角的部件，整棵樹主要是木質的，看左邊的「木」喔！"
+      },
+      {
+        "id": "s0-q05-opt3",
+        "text": "豆部",
+        "zhuyin": "ㄉㄡˋ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "中間雖然有豆，但大樹是木頭，部首代表分類的核心意義！"
+      }
+    ],
+    "audioPromptText": "樹這個字的部首是什麼呢？"
+  },
+  {
+    "id": "s0-q06",
+    "unitId": 0,
+    "lessonId": 0,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "下列哪一個字的部首不是「水部（氵）」？",
+    "options": [
+      {
+        "id": "s0-q06-opt1",
+        "text": "相",
+        "zhuyin": "ㄒㄧㄤ",
+        "isCorrect": true,
+        "hint": "太厲害了！「相」是木部（看木頭），不是水部喔！"
+      },
+      {
+        "id": "s0-q06-opt2",
+        "text": "河",
+        "zhuyin": "ㄏㄜˊ",
+        "isCorrect": false,
+        "hint": "「河」有三點水，是水部喔！"
+      },
+      {
+        "id": "s0-q06-opt3",
+        "text": "洗",
+        "zhuyin": "ㄒㄧˇ",
+        "isCorrect": false,
+        "hint": "「洗」也是三點水，是水部喔！"
+      }
+    ],
+    "audioPromptText": "下列哪一個字的部首不是水部？"
+  }
+]

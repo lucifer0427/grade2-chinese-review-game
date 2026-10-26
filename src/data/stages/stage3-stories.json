@@ -1,0 +1,220 @@
+[
+  {
+    "id": "s3-q01",
+    "unitId": 3,
+    "lessonId": 9,
+    "focusType": "homophone",
+    "mechanicType": "choice",
+    "prompt": "【曹沖秤象天平】請判斷多音字「重」的讀音：「這隻大象到底有多『重』呢？」這裡的「重」要讀作什麼？",
+    "targetWord": {
+      "char": "重",
+      "zhuyin": "ㄓㄨㄥˋ",
+      "radical": "里",
+      "strokeCount": 2,
+      "totalStrokes": 9,
+      "meaning": "物體分量大，或物體的分量大小"
+    },
+    "options": [
+      {
+        "id": "s3-q01-opt1",
+        "text": "ㄓㄨㄥˋ",
+        "zhuyin": "ㄓㄨㄥˋ",
+        "isCorrect": true,
+        "hint": "答對了！測量分量、沉重時要讀作「ㄓㄨㄥˋ（四聲）」！",
+        "ttsOverride": "ㄓㄨㄥˋ"
+      },
+      {
+        "id": "s3-q01-opt2",
+        "text": "ㄔㄨㄥˊ",
+        "zhuyin": "ㄔㄨㄥˊ",
+        "isCorrect": false,
+        "hint": "讀作「ㄔㄨㄥˊ（二聲）」時是表示再一次、疊加的意思（例如重新、重來）喔！",
+        "ttsOverride": "ㄔㄨㄥˊ"
+      }
+    ],
+    "audioPromptText": "這隻大象到底有多重呢？這裡的重讀作什麼？"
+  },
+  {
+    "id": "s3-q02",
+    "unitId": 3,
+    "lessonId": 9,
+    "focusType": "homophone",
+    "mechanicType": "choice",
+    "prompt": "【多音字魔鏡】「小樹苗在陽光下慢慢『長』大了。」這裡的「長」讀作什麼？",
+    "targetWord": {
+      "char": "長",
+      "zhuyin": "ㄓㄤˇ",
+      "radical": "長",
+      "strokeCount": 0,
+      "totalStrokes": 8,
+      "meaning": "生長、增加、年紀較大"
+    },
+    "options": [
+      {
+        "id": "s3-q02-opt1",
+        "text": "ㄓㄤˇ",
+        "zhuyin": "ㄓㄤˇ",
+        "isCorrect": true,
+        "hint": "太聰明了！植物或身體成長發育，要讀作「ㄓㄤˇ（三聲）」！",
+        "ttsOverride": "ㄓㄤˇ"
+      },
+      {
+        "id": "s3-q02-opt2",
+        "text": "ㄔㄤˊ",
+        "zhuyin": "ㄔㄤˊ",
+        "isCorrect": false,
+        "hint": "讀作「ㄔㄤˊ（二聲）」時是形容長短距離（例如很長的尺）喔！",
+        "ttsOverride": "ㄔㄤˊ"
+      }
+    ],
+    "audioPromptText": "小樹苗在陽光下慢慢長大了。這裡的長讀作什麼？"
+  },
+  {
+    "id": "s3-q03",
+    "unitId": 3,
+    "lessonId": 8,
+    "focusType": "homophone",
+    "mechanicType": "choice",
+    "prompt": "【多音字魔鏡】「小熊在森林裡跑『得』很快。」這裡的「得」要讀什麼音？",
+    "targetWord": {
+      "char": "得",
+      "zhuyin": "˙ㄉㄜ",
+      "radical": "彳",
+      "strokeCount": 8,
+      "totalStrokes": 11,
+      "meaning": "用在動詞之後表示程度或結果的助詞"
+    },
+    "options": [
+      {
+        "id": "s3-q03-opt1",
+        "text": "˙ㄉㄜ",
+        "zhuyin": "˙ㄉㄜ",
+        "isCorrect": true,
+        "hint": "沒錯！用在動作後面形容程度（跑得快、跳得高）要念輕聲「˙ㄉㄜ」！",
+        "ttsOverride": "的"
+      },
+      {
+        "id": "s3-q03-opt2",
+        "text": "ㄉㄜˊ",
+        "zhuyin": "ㄉㄜˊ",
+        "isCorrect": false,
+        "hint": "讀作「ㄉㄜˊ（二聲）」是獲得、得到的動詞（例如得到獎品）喔！",
+        "ttsOverride": "得"
+      },
+      {
+        "id": "s3-q03-opt3",
+        "text": "ㄉㄟˇ",
+        "zhuyin": "ㄉㄟˇ",
+        "isCorrect": false,
+        "hint": "讀作「ㄉㄟˇ（三聲）」是必須、需要的意思（例如我得回家了）！",
+        "ttsOverride": "得"
+      }
+    ],
+    "audioPromptText": "小熊在森林裡跑得很快。這裡的得要讀什麼音？"
+  },
+  {
+    "id": "s3-q04",
+    "unitId": 3,
+    "lessonId": 7,
+    "focusType": "syntax",
+    "mechanicType": "drag-slot",
+    "prompt": "請用「因為……所以……」因果複句，找出國王和大臣行為的真正原因：",
+    "sentenceTemplate": "[___]，所以大臣們都假裝看得到新衣服。",
+    "options": [
+      {
+        "id": "s3-q04-opt1",
+        "text": "因為害怕被別人當作愚蠢不稱職",
+        "zhuyin": "ㄧㄣ ㄨㄟˋ ㄏㄞˋ ㄆㄚˋ ㄅㄟˋ ㄅㄧㄝˊ ㄖㄣˊ ㄉㄤ ㄗㄨㄛˋ ㄩˊ ㄔㄨㄣˇ",
+        "isCorrect": true,
+        "hint": "答對了！大臣們內心害怕丟臉，所以才說假話！"
+      },
+      {
+        "id": "s3-q04-opt2",
+        "text": "因為衣服真的閃閃發光很美麗",
+        "zhuyin": "ㄧㄣ ㄨㄟˋ ㄧ ㄈㄨˊ ㄓㄣ ˙ㄉㄜ ㄕㄢˇ ㄕㄢˇ ㄈㄚ ㄍㄨㄤ",
+        "isCorrect": false,
+        "hint": "其實織布機上根本沒有布，衣服是假的喔！"
+      },
+      {
+        "id": "s3-q04-opt3",
+        "text": "因為國王想要去森林打獵",
+        "zhuyin": "ㄧㄣ ㄨㄟˋ ㄍㄨㄛˊ ㄨㄤˊ ㄒㄧㄤˇ ㄧㄠˋ ㄑㄩˋ ㄉㄚˇ ㄌㄧㄝˋ",
+        "isCorrect": false,
+        "hint": "打獵和新衣裳沒有因果關係喔！"
+      }
+    ],
+    "audioPromptText": "空格，所以大臣們都假裝看得到新衣服。"
+  },
+  {
+    "id": "s3-q05",
+    "unitId": 3,
+    "lessonId": 9,
+    "focusType": "reading",
+    "mechanicType": "choice",
+    "prompt": "故事四要素包含：時間、地點、人物、事件。在《大象有多重？》的故事中，主角用什麼「化整為零」的巧妙方法秤出大象重量？",
+    "targetWord": {
+      "char": "稱",
+      "zhuyin": "ㄔㄥ",
+      "radical": "禾",
+      "strokeCount": 10,
+      "totalStrokes": 15,
+      "meaning": "測量物體輕重"
+    },
+    "options": [
+      {
+        "id": "s3-q05-opt1",
+        "text": "看船身吃水線，改裝一塊塊等重石頭來分開稱",
+        "zhuyin": "ㄎㄢˋ ㄔㄨㄢˊ ㄕㄣ ㄔ ㄕㄨㄟˇ ㄒㄧㄢˋ",
+        "isCorrect": true,
+        "hint": "曹沖真聰明！用船身水痕借代重量，化整為零解決難題！"
+      },
+      {
+        "id": "s3-q05-opt2",
+        "text": "打造一把比房子還巨大的巨型木秤",
+        "zhuyin": "ㄉㄚˇ ㄗㄠˋ ㄧ ㄅㄚˇ ㄐㄩˋ ㄉㄚˋ ˙ㄉㄜ ㄇㄨˋ ㄔㄥˋ",
+        "isCorrect": false,
+        "hint": "官員提過這個想法，但根本沒有那麼大的秤子，行不通喔！"
+      },
+      {
+        "id": "s3-q05-opt3",
+        "text": "叫大象跳到懸崖邊用繩子吊起來量",
+        "zhuyin": "ㄐㄧㄠˋ ㄉㄚˋ ㄒㄧㄤˋ ㄊㄧㄠˋ ㄉㄠˋ ㄒㄩㄢˊ ㄧㄞˊ",
+        "isCorrect": false,
+        "hint": "這樣太危險了，不是曹沖想出的智慧方法！"
+      }
+    ],
+    "audioPromptText": "在曹沖秤象的故事中，主角用什麼化整為零的方法秤出大象重量？"
+  },
+  {
+    "id": "s3-q06",
+    "unitId": 3,
+    "lessonId": 8,
+    "focusType": "syntax",
+    "mechanicType": "choice",
+    "prompt": "《「聰明」的小熊》篇名中的「聰明」為什麼要加上引號「」？",
+    "options": [
+      {
+        "id": "s3-q06-opt1",
+        "text": "表示反諷，代表自作聰明反而鬧出笑話",
+        "zhuyin": "ㄅㄧㄠˇ ㄕˋ ㄈㄢˇ ㄈㄥˋ",
+        "isCorrect": true,
+        "hint": "好深刻的觀察！引號用來強調它不是真的聰明，而是自作聰明！"
+      },
+      {
+        "id": "s3-q06-opt2",
+        "text": "代表小熊真的是全森林最聰明的動物",
+        "zhuyin": "ㄉㄞˋ ㄅㄧㄠˇ ㄒㄧㄠˇ ㄒㄩㄥˊ ㄓㄣ ˙ㄉㄜ ㄗㄨㄟˋ ㄘㄨㄥ ㄇㄧㄥˊ",
+        "isCorrect": false,
+        "hint": "小熊把口袋剪洞裝豆子，豆子全漏光了，所以不是真的聰明喔！"
+      },
+      {
+        "id": "s3-q06-opt3",
+        "text": "標點符號不小心多打的",
+        "zhuyin": "ㄅㄧㄠ ㄉㄧㄢˇ ㄈㄨˊ ㄏㄠˋ ㄉㄨㄛ ㄉㄚˇ ˙ㄉㄜ",
+        "isCorrect": false,
+        "hint": "每個標點符號都有特殊的表情與語意作用喔！"
+      }
+    ],
+    "audioPromptText": "聰明的小熊篇名中的聰明為什麼要加上引號？"
+  }
+]

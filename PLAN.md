@@ -1,197 +1,198 @@
 # 國小二年級國語自主學習遊戲 - 開發計畫書 (PLAN.md)
 
-本專案依據教育部 108 課綱康軒版國小二年級上學期教材架構，打造全前端、零後端依賴的互動式教育冒險網頁遊戲，支援桌機、平板觸控螢幕及教室智慧大屏，一鍵部署於 **GitHub Pages**。
+本專案依據教育部 108 課綱康軒版國小二年級上學期教材架構，打造全前端、零後端依賴的互動式教育冒險網頁遊戲，支援桌機、平板觸控螢幕及教室智慧大屏（ViewSonic/BenQ），一鍵部署於 **GitHub Pages**。
 
 ---
 
 ## 一、 技術架構與選型
 
-| 模組 | 選用技術 | 設計考量 | 對應強制調用 Skill |
+| 模組 | 選用技術 | 設計考量與關鍵強化 | 對應強制調用 Skill |
 | :--- | :--- | :--- | :--- |
-| **建置工具 & 語言** | Vite + React 18 + TypeScript | 快速啟動、模組化狀態管理、嚴格型別防止低級錯誤。 | - |
-| **樣式與版面** | Tailwind CSS + CSS Modules | 輕量、彈性響應式、構建大尺寸觸控 UI（符合低年級人機介面）。 | `game-ui-ux` |
-| **互動手感與特效** | CSS Keyframes + Canvas-Confetti | 答對 Squash & Stretch 彈跳、三次錯誤高亮引導、零挫折溫和晃動。 | `game-feel` |
-| **輸入系統** | Pointer Events 雙模機制 | 支援「拖曳吸附 (Snap Radius ≥ 30px)」與「點選放置」，防誤觸防滾動。 | `input-systems` |
-| **注音顯示機制** | 原生 HTML5 `<ruby><rb>字</rb><rt>ㄗˋ</rt></ruby>` | 免載入數十 MB 的注音字型檔，瀏覽器原生支援，縮放不失真且無版權問題。 | `game-ui-ux` |
-| **音效系統** | Web Audio API（自研微型合成器） | 程式動態生成彈跳音、答對提示音、星級音效，零外載音訊體積。 | `audio-design` |
-| **語音導讀 (TTS)** | 瀏覽器原生 `window.speechSynthesis` (`zh-TW`) | 支援語音朗讀題幹、生字與提示，降低低年級閱讀門檻。 | `audio-design` |
-| **向量素材視覺** | 內聯 SVG 圖元 + 柔和繪本色盤 | 低彩度不傷眼繪本風，完全 0 外部圖片請求。 | `create-game-assets` |
-| **存檔系統** | 瀏覽器 `localStorage` | 紀錄關卡星級、生字存摺、錯題本，支援 JSON 匯出/匯入。 | `save-systems` |
-| **部署流程** | GitHub Actions (`gh-pages`) | push 到 main 分支自動建置產出靜態網站至 GitHub Pages。 | - |
+| **建置工具 & 語言** | Vite + React 18 + TypeScript | 快速啟動、模組化狀態管理、可辨識聯合型別 (Discriminated Unions) 嚴格校驗題庫。 | - |
+| **樣式與版面** | Tailwind CSS + CSS Variables | 適配 16:9（教室大屏）與 4:3（iPad）安全邊界，觸控熱區強制 `≥ 64px`。 | `game-ui-ux` |
+| **台灣直式注音引擎** | 自研 `RubyText.tsx` 直排解析器 | **廢棄瀏覽器預設水平置頂 `<rt>`**；自動拆解「聲母/介音/韻母/調號（含輕聲置頂）」渲染於國字右側，100% 對齊教育部課本標準且零字型載入體積。 | `game-ui-ux` |
+| **互動手感與特效** | CSS Keyframes + Canvas-Confetti | 答對 Squash & Stretch 彈跳、三次錯誤自動啟動高亮引導（零挫折模式）、溫和搖晃反饋。 | `game-feel` |
+| **雙模輸入系統** | Pointer Events 雙模互動器 | 全面支援「**點選放置 (Tap-to-Place)**」與「**拖曳吸附 (Snap Radius ≥ 30px)**」雙模，鎖定 `touch-action: none` 防誤觸滾動。 | `input-systems` |
+| **音效合成系統** | Web Audio API (`AudioManager.ts`) | 純程式即時合成 6 種正向音效，內建 Gain Envelope 防爆音與 `onended` 節點自動回收防記憶體洩漏。 | `audio-design` |
+| **語音導讀 (TTS)** | `window.speechSynthesis` (`zh-TW`) | 預設語速 `rate: 0.85` 慢速清晰導讀；內建**破音字/多音字同音替代詞表 (`ttsOverride`)**，解決「長/得/重」單字誤讀。 | `audio-design` |
+| **繪本視覺資產** | 內聯 SVG + 輕量 WebP (`< 30KB`) | 低彩度護眼繪本色盤，**畫面 100% 嚴禁 AI 生成任何文字或注音**，總圖檔體積 `< 500KB`。 | `chinese-storybook-illustrator` |
+| **存檔與錯題系統** | 瀏覽器 `localStorage` | 支援 `schemaVersion` 自動遷移、關卡星等、生字存摺、錯題重練，以及課堂教學進度 JSON 匯出/匯入。 | `save-systems` |
+| **部署流程** | GitHub Actions (`deploy-pages@v4`) | Push 到 `main` 分支自動執行型別檢查、建置與發布至 GitHub Pages。 | - |
 
 ---
 
 ## 二、 核心遊戲化架構與關卡規劃
 
-遊戲以「**語文冒險島**」為世界觀，學童扮演「文字小精靈」，依序解鎖 5 大主題王國：
+遊戲以「**語文冒險島**」為世界觀，學童扮演「文字小精靈」，依序解鎖 6 大主題島嶼：
 
 ```
 [語文冒險島地圖]
-  ├── [島嶼 0] 字典神木森林  ── 部首辨識、筆畫雷達、部首查字三步驟
-  ├── [島嶼 1] 朝氣晨光鎮    ── 部首偏旁分類(艸/水/木)、疊字短語列車
-  ├── [島嶼 2] 歡樂慶典城    ── 標點彈珠台(、，！)、時間順序傳送帶(先/接著/最後)
-  ├── [島嶼 3] 故事智慧館    ── 多音字魔鏡(長/得/重)、曹沖天平推理、四要素拼圖
-  ├── [島嶼 4] 冬日候鳥郵局  ── 書信格式工廠(稱謂/問候/正文/祝詞/署名/日期)、因果積木
-  └── [試煉之塔] 語文大挑戰  ── 閱讀階梯長文挑戰與綜合閱測
+  ├── [島嶼 0] 字典神木林 (查字典真簡單)   ── 部首辨識、外筆畫計算、查字典三步驟排序
+  ├── [島嶼 1] 晨光小廚房 (單元一：第1~3課) ── 艸/水/木部首歸類、疊字副詞列車、並列複句
+  ├── [島嶼 2] 秋日柿餅節 (單元二：第4~6課) ── 標點符號大砲(、，！)、曬柿順敘時間軸(先/接著/最後)、形近字
+  ├── [島嶼 3] 智慧天平館 (單元三：第7~9課) ── 多音字語境天平(長/得/重)、故事四要素拼圖、因果複句
+  ├── [島嶼 4] 冬日候鳥郵局 (單元四：第10~12課)── 賀卡書信格式組裝、比喻修辭、錯別字啄木鳥
+  └── [終章島] 冒險畢業典禮 (閱讀階梯)     ── 長文分段閱讀理解、訊息擷取與推論挑戰
 ```
 
-### 各單元關卡機制對照表
+### 各單元關卡與四大核心互動引擎對照表
 
-| 關卡代號 | 單元主題 | 核心語文能力 | 遊戲機制設計 |
-| :--- | :--- | :--- | :--- |
-| **Level 0** | **查字典真簡單** | 部首表義、外筆畫計算、檢字法 | **【部首尋寶雷達】**：拆解漢字部件，拖曳部首至檢字盤，計算剩餘筆畫開寶箱。 |
-| **Level 1** | **第一單元：生活新鮮事**<br>（第1-3課） | 1. 艸/水/木部首分類<br>2. 疊字副詞（慢慢的走、靜靜的看）<br>3. 「一邊……一邊……」複句 | **【疊字點心列車】**：拖曳「疊字語詞積木」搭配動作完成早餐訂單；部首輸送帶生字分類。 |
-| **Level 2** | **第二單元：歡樂的時刻**<br>（第4-6課） | 1. 標點符號（頓號、逗號、感嘆號）<br>2. 順敘法時間銜接（先…接著…最後…）<br>3. 形近字比對（坐/座、屋/室） | **【慶典標點大砲】**：將缺漏的標點發射入句；排順序製作柿餅（曬柿工序時序卡拖曳）。 |
-| **Level 3** | **第三單元：故事萬花筒**<br>（第7-9課） | 1. 多音字辨析（長、得、重）<br>2. 故事四要素（人物、時間、地點、事件）<br>3. 因果邏輯（因為……所以……） | **【曹沖天平稱象】**：配對多音字語境獲取等重石頭；分類故事四要素卡片推動劇情。 |
-| **Level 4** | **第四單元：冬天的悄悄話**<br>（第10-12課） | 1. 應用文格式（稱謂、問候、正文、署名、日期）<br>2. 比喻修辭（像……一樣……）<br>3. 錯別字校正 | **【黑琵信差裝箱】**：將賀年卡各部件依規範放入信封；辨識並點擊錯別字予以消除。 |
-| **Final** | **閱讀階梯** | 長文閱讀理解、訊息擷取與因果推論 | **【繪本解謎劇場】**：滾動式圖文短文閱讀，互動問答解鎖通關徽章。 |
+為避免硬編碼各關邏輯，將全冊 6 大島嶼收斂為 **4 種標準化核心互動引擎 (`mechanicType`)**：
+
+| 關卡代號 | 單元主題 | 核心語文能力 (108 課綱對齊) | 調用互動引擎 (`mechanicType`) | 遊戲化情境包裝 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Stage 0** | **查字典真簡單** | 部首表義、部首外筆畫計算、檢字三步驟 (`4-I-3`) | `choice` + `sequence` | **【字典神木尋寶】**：拆解部首與計算外筆畫開鎖，排列查字典三步驟口訣。 |
+| **Stage 1** | **第一單元：生活新鮮事**<br>（第1~3課 + 統整一） | 1. 艸/水/木部首表義歸類 (`Ab-I-4`)<br>2. 疊字副詞短語（慢慢的走）<br>3. 「一邊…一邊…」並列複句 | `drag-slot` + `choice` | **【晨光早餐列車】**：將疊字詞與動作卡放入餐盤卡槽；部首輸送帶分類。 |
+| **Stage 2** | **第二單元：歡樂的時刻**<br>（第4~6課 + 統整二） | 1. 標點符號（頓號、逗號、感嘆號）<br>2. 順敘法時間軸（先…接著…最後…）<br>3. 形近字辨析（坐/座、屋/室） | `drag-slot` + `sequence` | **【慶典標點大砲 & 曬柿工坊】**：發射標點填入句中空格；按時間順序排列曬柿餅工序。 |
+| **Stage 3** | **第三單元：故事萬花筒**<br>（第7~9課 + 統整三） | 1. 多音字語境辨析（長、得、重）<br>2. 故事四要素（時間、地點、人物、事件）<br>3. 因果複句（因為…所以…） | `scale-balance` + `drag-slot` | **【曹沖秤象智慧天平】**：為多音字選出正確讀音石塊使大象船身平衡；拼裝四要素故事卡。 |
+| **Stage 4** | **第四單元：冬天的悄悄話**<br>（第10~12課 + 統整四） | 1. 書信賀卡六大格式 (`Be-I-2`)<br>2. 比喻修辭（像…一樣…）<br>3. 常見錯別字辨正 | `sequence` + `choice` | **【黑琵信差郵局】**：將稱謂、問候、正文、祝詞、署名、日期依序裝入賀卡框架；抓出錯別字。 |
+| **Stage 5** | **閱讀階梯：我最喜歡上學了** | PIRLS 四層次閱讀理解（提取、推論、詮釋、省思）(`5-I-4`, `5-I-7`) | `reading-comprehension` | **【繪本解謎劇場】**：附帶注音與語音導讀的繪本短文面板，搭配分段闖關問答。 |
 
 ---
 
-## 三、 專案目錄結構規劃
+## 三、 統一題庫資料結構與專案目錄規劃
+
+### 1. 專案目錄結構（與 `AGENTS.md` 100% 同步）
 
 ```
-text-adventure-game/
+grade2-chinese-review-game/
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml              # GitHub Pages 自動建置部署
+│       └── deploy.yml                  # GitHub Pages 自動建置部署
 ├── public/
-│   ├── favicon.ico
-│   └── audio/                      # 備用音效素材 (若合成器不足時)
+│   ├── favicon.svg                     # 純向量繪本風圖示
+│   └── assets/
+│       ├── stages/                     # 關卡封面 (16:9 WebP, <30KB, 零文字)
+│       └── badges/                     # 成就勳章 (1:1 WebP, 透明背景)
 ├── src/
-│   ├── core/                       # 遊戲核心引擎
-│   │   ├── AudioManager.ts         # Web Audio 合成音效引擎 (無外載音檔)
-│   │   ├── SpeechManager.ts        # Web Speech API 語音朗讀器
-│   │   ├── StorageManager.ts       # 本機 LocalStorage 進度與存檔
-│   │   └── Types.ts                # 全局 TypeScript 定義
-│   ├── data/                       # 課程與題庫資料庫
-│   │   ├── level0-dictionary.json  # 字典篇題庫
-│   │   ├── level1-life.json        # 第一單元題庫
-│   │   ├── level2-joy.json         # 第二單元題庫
-│   │   ├── level3-stories.json     # 第三單元題庫
-│   │   ├── level4-winter.json      # 第四單元題庫
-│   │   └── reading-ladder.json     # 閱讀階梯題庫
-│   ├── components/                 # 可複用 UI 與遊戲模組
+│   ├── core/                           # 遊戲核心引擎
+│   │   ├── Types.ts                    # 全局題庫、存檔與狀態型別定義
+│   │   ├── ZhuyinParser.ts             # 台灣標準直式注音拆解引擎 (聲/介/韻/調)
+│   │   ├── AudioManager.ts             # Web Audio 合成音效引擎 (含節點回收)
+│   │   ├── SpeechManager.ts            # Web Speech API 朗讀器 (含破音字校正)
+│   │   └── StorageManager.ts           # LocalStorage 進度、生字存摺、錯題本與匯出入
+│   ├── data/
+│   │   └── stages/                     # 統一題庫目錄 (嚴格遵循 CurriculumQuestion)
+│   │       ├── stage0-dictionary.json  # 序章：查字典真簡單
+│   │       ├── stage1-life.json        # 第一單元：生活新鮮事
+│   │       ├── stage2-joy.json         # 第二單元：歡樂的時刻
+│   │       ├── stage3-stories.json     # 第三單元：故事萬花筒
+│   │       ├── stage4-winter.json      # 第四單元：冬天的悄悄話
+│   │       ├── stage5-reading.json     # 終章：閱讀階梯
+│   │       └── index.ts                # 題庫匯總與關卡元資料 (StageMeta)
+│   ├── components/
 │   │   ├── common/
-│   │   │   ├── RubyText.tsx        # 支援注音排版的文字組件
-│   │   │   ├── BigButton.tsx       # 低年級防誤觸大按鈕
-│   │   │   ├── ProgressBar.tsx     # 關卡進度與星級顯示條
-│   │   │   └── DialogBox.tsx       # 角色導讀對話框
+│   │   │   ├── RubyText.tsx            # 台灣教育部標準右側直式注音文字組件
+│   │   │   ├── BigButton.tsx           # 低年級防誤觸大熱區按鈕 (≥64px)
+│   │   │   ├── TopNavBar.tsx           # 頂部狀態列 (音訊開關、注音開關、返回地圖)
+│   │   │   └── HintBubble.tsx          # 零挫折引導提示對話框 + TTS 語音播放鈕
 │   │   └── gameplay/
-│   │       ├── DragDropSlot.tsx    # 磁吸式拖曳卡槽 (支援滑鼠與觸控)
-│   │       ├── WordBuilder.tsx     # 部件拼字器
-│   │       ├── PunctuationCanon.tsx# 標點符號發射器
-│   │       └── SequenceSorter.tsx  # 句子順序重組器
-│   ├── views/                      # 畫面視圖
-│   │   ├── MapView.tsx             # 世界地圖主選單
-│   │   ├── StageView.tsx           # 關卡遊玩畫面
-│   │   ├── ResultModal.tsx         # 通關結算 (星等、鼓掌動畫)
-│   │   └── NotebookView.tsx        # 生字小筆記與錯題複習本
-│   ├── App.tsx                     # 主應用入口與簡易路由
-│   └── main.tsx
+│   │       ├── ChoiceBoard.tsx         # 單選/形近字/錯別字/多音字天平互動面板
+│   │       ├── DragSlotBoard.tsx       # 雙模(點選+拖曳吸附)填空與句型積木面板
+│   │       ├── SequenceBoard.tsx       # 順敘時間軸、查字典步驟、書信格式排序面板
+│   │       └── ReadingStoryPanel.tsx   # 閱讀階梯長文附注音捲動閱讀器
+│   ├── views/
+│   │   ├── MapView.tsx                 # 語文冒險島世界地圖主選單
+│   │   ├── StageView.tsx               # 關卡主控台 (進度條、連擊、三次錯誤引導、過關結算)
+│   │   ├── NotebookView.tsx            # 生字存摺 (部首/筆畫查詢) 與錯題重練本
+│   │   └── SettingsModal.tsx           # 教師/家長工具箱 (進度 JSON 匯出匯入、重置)
+│   ├── App.tsx                         # 主應用狀態路由
+│   ├── main.tsx                        # React 掛載入口
+│   └── index.css                       # Tailwind 與 Squash & Stretch 關鍵影格動畫
 ├── index.html
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.js
+├── postcss.config.js
 └── vite.config.ts
 ```
 
----
+### 2. 擴充版題庫 Schema (`src/core/Types.ts`)
 
-## 四、 開發里程碑與時程規劃 (Milestones)
+向下相容 `AGENTS.md` 基礎定義，並擴充支援填空卡槽、順序排列與長文閱讀：
 
-### Milestone 1：地基建置與核心組件庫 (關聯 Skills: `game-ui-ux`, `audio-design`, `save-systems`)
-- [ ] 初始化 Vite + React + TypeScript + TailwindCSS 專案。
-- [ ] 撰寫 `RubyText` 組件，支援標準國字與注音排版（鎖定防裁切）。
-- [ ] 依據 `audio-design` 完成 `AudioManager`（Web Audio 正弦波雙音合成、防爆音 Gain Envelope）。
-- [ ] 完成 `SpeechManager` 封裝，實現點擊朗讀功能 (`zh-TW`)。
-- [ ] 依據 `save-systems` 建立 `StorageManager`，管理玩家等級、星數、已解鎖關卡與 JSON 匯出匯入。
-
-### Milestone 2：關卡 0 與關卡 1-2 原型 (關聯 Skills: `input-systems`, `game-feel`, `create-game-assets`)
-- [ ] 導入 `level0-dictionary.json` 與 `level1-life.json`。
-- [ ] 開發關卡 0「部首與查字典檢索三步驟」操作互動。
-- [ ] 依據 `input-systems` 開發關卡 1「疊字副詞＋的＋動作」拖曳吸附列車與「部首分類傳送帶」（支援 Tap-to-Place 與 Drag-and-Drop 雙模）。
-- [ ] 開發關卡 2「標點符號小法官」與「時間軸順敘法排序」。
-- [ ] 實裝平板與觸控螢幕防誤觸檢測（`touch-action: none`、大點擊熱區 ≥ 64px）。
-
-### Milestone 3：關卡 3-4 與終章故事館 (關聯 Skills: `game-feel`, `create-game-assets`)
-- [ ] 導入 `level3-stories.json`、`level4-winter.json` 與 `reading-ladder.json`。
-- [ ] 開發關卡 3「多音字辨析」與「曹沖秤象天平」推理系統。
-- [ ] 開發關卡 4「書信卡片格式組裝」與「因果關聯句型積木」。
-- [ ] 開發閱讀階梯長文閱讀測驗模式（分段提示與因果提取）。
-
-### Milestone 4：UI 精緻化、手感拋光與 GitHub Pages 發布 (關聯 Skills: `game-feel`, `game-ui-ux`)
-- [ ] 依據 `game-feel` 加入答對卡片彈跳（Squash & Stretch）、通關彩帶動畫（`canvas-confetti`）、星級結算彈窗。
-- [ ] 實作三次答錯高亮引導模式（零挫折無痛教學）。
-- [ ] 建置「個人生字存摺」與「錯題救援本」檢視功能。
-- [ ] 配置 `.github/workflows/deploy.yml`，測試自動化構建與發布至 GitHub Pages。
-- [ ] 跨裝置實機驗證（Windows Chrome、iPad Safari、大螢幕觸控板）。
-
----
-
-## 五、 GitHub 倉庫與自動化部署設定
-
-- **專案倉庫**：`https://github.com/lucifer0427/grade2-chinese-review-game`
-- **GitHub Pages 預設網址**：`https://lucifer0427.github.io/grade2-chinese-review-game/`
-
-### 1. `vite.config.ts` 設定
 ```typescript
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+export type FocusType =
+  | 'radical'      // 部首與筆畫
+  | 'components'   // 部件與形近字
+  | 'homophone'    // 多音字與同音字
+  | 'punctuation'  // 標點符號
+  | 'syntax'       // 疊字短語、複句、順敘法
+  | 'idiom'        // 成語與修辭
+  | 'letter'       // 書信賀卡應用文格式
+  | 'reading';     // 閱讀理解
 
-export default defineConfig({
-  plugins: [react()],
-  base: './', // 確保使用相對路徑，相容 GitHub Pages 二級路徑資產加載
-});
+export type MechanicType =
+  | 'choice'       // 經典點選 / 曹沖天平對比選擇
+  | 'drag-slot'    // 雙模拖曳/點選填入卡槽 (標點填空、疊字造句)
+  | 'sequence';    // 順序排列 (查字典步驟、先/接著/最後、書信格式)
+
+export interface CurriculumQuestion {
+  id: string;                      // 例: "u1-l2-char-01"
+  unitId: number;                  // 0 ~ 5 (0: 查字典, 1~4: 單元一至四, 5: 閱讀階梯)
+  lessonId: number;                // 課次 (0 ~ 13)
+  focusType: FocusType;
+  mechanicType: MechanicType;      // 決定調用哪個互動組件
+  prompt: string;                  // 題目說明 (純文字，支援由 RubyText 自動標音或詞庫匹配)
+  promptZhuyin?: string;           // 題目重點詞注音輔助
+  passage?: string;                // 閱讀階梯或情境短文段落
+  sentenceTemplate?: string;       // 用於 drag-slot，例: "媽媽一邊[___]，一邊聽音樂。"
+  targetWord?: {
+    char: string;                  // 目標生字 (通關後自動收錄進「生字存摺」)
+    zhuyin: string;                // 標準注音，例: "ㄔㄤˊ"
+    radical: string;               // 部首，例: "長"
+    strokeCount: number;           // 部首外筆畫
+    totalStrokes?: number;         // 總筆畫
+    meaning?: string;              // 字義或造詞範例
+  };
+  options: Array<{
+    id: string;
+    text: string;
+    zhuyin?: string;               // 選項專屬注音 (特別用於多音字與生字卡)
+    isCorrect: boolean;            // choice/drag-slot 中標記正確項
+    orderIndex?: number;           // sequence 排序題中的正確順序 (0, 1, 2...)
+    hint: string;                  // 錯答時的溫和反饋引導
+    ttsOverride?: string;          // 防止 Web Speech API 破音字讀錯的替代發音字串
+  }>;
+  audioPromptText?: string;        // 點擊語音鈕時的 TTS 朗讀文本 (含破音字校正)
+}
 ```
 
-### 2. GitHub Actions 現代化原生發布工作流 (`.github/workflows/deploy.yml`)
-採用 GitHub 官方最新推薦的 `actions/upload-pages-artifact@v3` 與 `actions/deploy-pages@v4`，免維護 `gh-pages` 分支：
+---
 
-```yaml
-name: Build and Deploy to GitHub Pages
+## 四、 開發里程碑與執行順序 (Milestones)
 
-on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
+### Milestone 1：前端基建、台灣直式注音引擎與核心管理器
+* **關聯 Skills**：`game-ui-ux`, `audio-design`, `save-systems`
+- [ ] 建立 `package.json`、`vite.config.ts` (`base: './'`)、`tsconfig.json`、`tailwind.config.js`，完成專案初始化。
+- [ ] 實作 `ZhuyinParser.ts` 與 `RubyText.tsx`：將注音字串（如 `ㄔㄨㄤˊ`、`˙ㄉㄜ`）精準拆解為台灣教育部標準**右側直排注音 + 調號欄（輕聲置頂）**。
+- [ ] 升級 `AudioManager.ts`：補齊 `OscillatorNode.onended` 自動 `disconnect()` 節點清理，消除高頻點擊記憶體累積與 WebKit 爆音。
+- [ ] 實作 `SpeechManager.ts`：綁定 `zh-TW` 語音、`rate: 0.85` 慢速朗讀，並支援 `ttsOverride` 破音字保護。
+- [ ] 實作 `StorageManager.ts`：包含 `schemaVersion: 1` 驗證遷移、關卡星等紀錄、自動解鎖「生字存摺」、錯題收集器，以及 JSON 備份匯出/匯入。
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+### Milestone 2：全冊結構化題庫建置 (Stage 0 ~ Stage 5)
+* **關聯 Skills**：`save-systems`
+- [ ] 依據 `raws/康軒二上國語教材評析.md` 建立 `src/data/stages/` 下全部 6 大關卡題庫（每關 6~8 題精選核心素養題，總計約 40+ 道互動題目與 30+ 個核心生字存摺詞條）：
+  - `stage0-dictionary.json`（部首表義、算外筆畫、查字典三步驟排序）
+  - `stage1-life.json`（艸/水/木歸類、疊字副詞「慢慢的走」、「一邊…一邊…」）
+  - `stage2-joy.json`（頓號/逗號/感嘆號大砲、「先…接著…最後…」曬柿餅排序、坐/座與屋/室形近字）
+  - `stage3-stories.json`（長/得/重多音字天平、故事四要素提取、「因為…所以…」因果句）
+  - `stage4-winter.json`（賀年卡六大格式排序、「像…一樣…」比喻修辭、常見錯別字訂正）
+  - `stage5-reading.json`（《我最喜歡上學了》分段短文與 PIRLS 四層次閱讀問答）
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+### Milestone 3：雙模互動玩法引擎與零挫折反饋系統
+* **關聯 Skills**：`input-systems`, `game-feel`, `game-ui-ux`
+- [ ] 實作 `ChoiceBoard.tsx`（含一般選項卡與曹沖秤象天平視覺動效）。
+- [ ] 實作 `DragSlotBoard.tsx`（同時支援「點擊選項自動飛入卡槽」與「Pointer Events 拖曳磁吸 ≥ 30px」雙模操作）。
+- [ ] 實作 `SequenceBoard.tsx`（支援點選排入與拖曳換位，用於查字典步驟、順敘法時間軸與賀卡格式組裝）。
+- [ ] 實作 `StageView.tsx` 零挫折狀態機：
+  - 答錯第 1~2 次：卡片輕微水平搖晃 + 溫和三角波提示音 + 彈出 `option.hint` 語音引導。
+  - 答錯第 3 次：自動觸發**「引導高亮模式 (Guided Highlight)」**，正答區塊發出柔和呼吸金光。
+  - 答對：卡片 Squash & Stretch 彈跳 + 陽光三和弦琶音 + 自動收錄生字至存摺。
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-```
+### Milestone 4：冒險島主視覺、生字存摺與建置驗證
+* **關聯 Skills**：`chinese-storybook-illustrator`, `game-feel`
+- [ ] 實作 `MapView.tsx`（6 大主題島嶼路線圖、總星數統計、繪本風 SVG/WebP 插畫卡片）。
+- [ ] 實作 `NotebookView.tsx`（「我的生字存摺」可點擊發音、查看部首與筆畫；「錯題救援本」可一鍵進入錯題重練模式）。
+- [ ] 依 `chinese-storybook-illustrator` 規範配置純圖像視覺資產（零 AI 文字）。
+- [ ] 執行 `npm run build` 完整通過 TypeScript 嚴格編譯與 Vite 生產環境打包測試。

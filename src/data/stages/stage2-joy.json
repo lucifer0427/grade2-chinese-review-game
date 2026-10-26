@@ -1,0 +1,225 @@
+[
+  {
+    "id": "s2-q01",
+    "unitId": 2,
+    "lessonId": 4,
+    "focusType": "punctuation",
+    "mechanicType": "drag-slot",
+    "prompt": "校園運動會真熱鬧！句子最後表示強烈的歡呼與激動心情，應該填入什麼標點符號？",
+    "sentenceTemplate": "大家一起大聲喊著：「加油[___]」",
+    "targetWord": {
+      "char": "運",
+      "zhuyin": "ㄩㄣˋ",
+      "radical": "辵",
+      "strokeCount": 9,
+      "totalStrokes": 13,
+      "meaning": "活動體力，如運動、運球"
+    },
+    "options": [
+      {
+        "id": "s2-q01-opt1",
+        "text": "！",
+        "zhuyin": "ㄍㄢˇ ㄊㄢˋ ㄏㄠˋ",
+        "isCorrect": true,
+        "hint": "答對了！感嘆號表示強烈的讚嘆、歡呼或驚喜心情！"
+      },
+      {
+        "id": "s2-q01-opt2",
+        "text": "、",
+        "zhuyin": "ㄉㄨㄣˋ ㄏㄠˋ",
+        "isCorrect": false,
+        "hint": "頓號是用來分開並列的同類詞語，不是用在句尾歡呼喔！"
+      },
+      {
+        "id": "s2-q01-opt3",
+        "text": "，",
+        "zhuyin": "ㄉㄡˋ ㄏㄠˋ",
+        "isCorrect": false,
+        "hint": "逗號表示句子中間短暫停頓，情緒激動要用感嘆號「！」！"
+      }
+    ],
+    "audioPromptText": "大家一起大聲喊著：「加油空格」"
+  },
+  {
+    "id": "s2-q02",
+    "unitId": 2,
+    "lessonId": 6,
+    "focusType": "punctuation",
+    "mechanicType": "drag-slot",
+    "prompt": "在列舉水果時，同類詞語並列在一起，中間要用什麼標點符號隔開？",
+    "sentenceTemplate": "桌上有柿子[___]蘋果和香蕉，都是秋天的好滋味。",
+    "targetWord": {
+      "char": "柿",
+      "zhuyin": "ㄕˋ",
+      "radical": "木",
+      "strokeCount": 5,
+      "totalStrokes": 9,
+      "meaning": "柿樹所結的果實，成熟為橙黃色"
+    },
+    "options": [
+      {
+        "id": "s2-q02-opt1",
+        "text": "、",
+        "zhuyin": "ㄉㄨㄣˋ ㄏㄠˋ",
+        "isCorrect": true,
+        "hint": "太棒了！頓號專門用在同類詞彙並列時的短暫停頓！"
+      },
+      {
+        "id": "s2-q02-opt2",
+        "text": "。",
+        "zhuyin": "ㄐㄩˋ ㄏㄠˋ",
+        "isCorrect": false,
+        "hint": "句號表示整個句子結束了，列舉水果中間要用頓號「、」！"
+      },
+      {
+        "id": "s2-q02-opt3",
+        "text": "？",
+        "zhuyin": "ㄨㄣˋ ㄏㄠˋ",
+        "isCorrect": false,
+        "hint": "這句話不是問問題，不需要用問號喔！"
+      }
+    ],
+    "audioPromptText": "桌上有柿子空格蘋果和香蕉，都是秋天的好滋味。"
+  },
+  {
+    "id": "s2-q03",
+    "unitId": 2,
+    "lessonId": 6,
+    "focusType": "syntax",
+    "mechanicType": "sequence",
+    "prompt": "小鎮的柿餅節！請依時間順序「先……接著……最後……」排列美味柿餅的製作工序：",
+    "options": [
+      {
+        "id": "s2-q03-step1",
+        "text": "先將採收的柿子削去外皮",
+        "zhuyin": "ㄒㄧㄢ ㄐㄧㄤ ㄘㄞˇ ㄕㄡ ˙ㄉㄜ ㄕˋ ㄗ˙ ㄒㄧㄠ ㄑㄩˋ ㄨㄞˋ ㄆㄧˊ",
+        "isCorrect": true,
+        "orderIndex": 0,
+        "hint": "第一步：新鮮採下的柿子要先削皮喔！"
+      },
+      {
+        "id": "s2-q03-step2",
+        "text": "接著整齊排在竹篩上接受九降風吹拂與陽光烘曬",
+        "zhuyin": "ㄐㄧㄝ ㄓㄜ˙ ㄓㄥˇ ㄑㄧˊ ㄆㄞˊ ㄗㄞˋ ㄓㄨˊ ㄕㄞ ㄕㄤˋ",
+        "isCorrect": true,
+        "orderIndex": 1,
+        "hint": "第二步：排在圓形竹篩上風乾與日曬！"
+      },
+      {
+        "id": "s2-q03-step3",
+        "text": "最後經過捏壓揉塑，變成香甜好吃的柿餅",
+        "zhuyin": "ㄗㄨㄟˋ ㄏㄡˋ ㄐㄧㄥ ㄍㄨㄛˋ ㄋㄧㄝ ㄧㄚ ㄖㄡˊ ㄙㄨˋ",
+        "isCorrect": true,
+        "orderIndex": 2,
+        "hint": "第三步：最後手工按摩捏壓，成為金黃柿餅！"
+      }
+    ],
+    "audioPromptText": "請依時間順序排列美味柿餅的製作工序"
+  },
+  {
+    "id": "s2-q04",
+    "unitId": 2,
+    "lessonId": 5,
+    "focusType": "components",
+    "mechanicType": "choice",
+    "prompt": "「坐」和「座」讀音相同但字形意思不同。請問「請大家到自己的[___]位坐好」，空格應該填哪一個？",
+    "targetWord": {
+      "char": "座",
+      "zhuyin": "ㄗㄨㄛˋ",
+      "radical": "广",
+      "strokeCount": 7,
+      "totalStrokes": 10,
+      "meaning": "位置或底座，名詞"
+    },
+    "options": [
+      {
+        "id": "s2-q04-opt1",
+        "text": "座",
+        "zhuyin": "ㄗㄨㄛˋ",
+        "isCorrect": true,
+        "hint": "答對了！有广字頭的「座」是名詞，表示位置（如座位、座號）！"
+      },
+      {
+        "id": "s2-q04-opt2",
+        "text": "坐",
+        "zhuyin": "ㄗㄨㄛˋ",
+        "isCorrect": false,
+        "hint": "兩個人坐在土上的「坐」是動作動詞（如坐下、坐船）喔！"
+      }
+    ],
+    "audioPromptText": "請大家到自己的空格位坐好，空格應該填哪一個？"
+  },
+  {
+    "id": "s2-q05",
+    "unitId": 2,
+    "lessonId": 5,
+    "focusType": "components",
+    "mechanicType": "choice",
+    "prompt": "想一想，「我和家人一起[___]在客廳沙發上看電視」，這裡應該填入哪一個？",
+    "targetWord": {
+      "char": "坐",
+      "zhuyin": "ㄗㄨㄛˋ",
+      "radical": "土",
+      "strokeCount": 4,
+      "totalStrokes": 7,
+      "meaning": "臀部附著在物體上支持身體的動作，動詞"
+    },
+    "options": [
+      {
+        "id": "s2-q05-opt1",
+        "text": "坐",
+        "zhuyin": "ㄗㄨㄛˋ",
+        "isCorrect": true,
+        "hint": "答對了！「坐下」是身體動作，要選土部的「坐」！"
+      },
+      {
+        "id": "s2-q05-opt2",
+        "text": "座",
+        "zhuyin": "ㄗㄨㄛˋ",
+        "isCorrect": false,
+        "hint": "「座」是名詞（如座位），做出坐下的身體動作要用「坐」！"
+      }
+    ],
+    "audioPromptText": "我和家人一起空格在客廳沙發上看電視，這裡應該填入哪一個？"
+  },
+  {
+    "id": "s2-q06",
+    "unitId": 2,
+    "lessonId": 5,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "「竹籃船」的「籃」字，部首是什麼呢？",
+    "targetWord": {
+      "char": "籃",
+      "zhuyin": "ㄌㄢˊ",
+      "radical": "竹",
+      "strokeCount": 14,
+      "totalStrokes": 20,
+      "meaning": "用竹篾或藤條編織成的盛物器具"
+    },
+    "options": [
+      {
+        "id": "s2-q06-opt1",
+        "text": "竹部",
+        "zhuyin": "ㄓㄨˊ ㄅㄨˋ",
+        "isCorrect": true,
+        "hint": "答對了！竹籃是用竹子編織成的器具，部首在最上面的「竹部（⺮）」！"
+      },
+      {
+        "id": "s2-q06-opt2",
+        "text": "皿部",
+        "zhuyin": "ㄇㄧㄣˇ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "最底部的「皿」是器皿部件，但整隻籃子是竹製的，看上方的「竹部」！"
+      },
+      {
+        "id": "s2-q06-opt3",
+        "text": "艸部",
+        "zhuyin": "ㄘㄠˇ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "注意看頭頂是兩根小竹竿的竹字頭（⺮），不是草字頭喔！"
+      }
+    ],
+    "audioPromptText": "竹籃船的籃字，部首是什麼呢？"
+  }
+]

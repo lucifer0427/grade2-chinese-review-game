@@ -1,0 +1,229 @@
+[
+  {
+    "id": "s1-q01",
+    "unitId": 1,
+    "lessonId": 3,
+    "focusType": "syntax",
+    "mechanicType": "drag-slot",
+    "prompt": "請依照課文句型「慢慢的走」，選出最合適的疊字詞放入空格中：",
+    "sentenceTemplate": "小花貓看見小鳥，[___]靠了過去。",
+    "targetWord": {
+      "char": "慢",
+      "zhuyin": "ㄇㄢˋ",
+      "radical": "心",
+      "strokeCount": 11,
+      "totalStrokes": 14,
+      "meaning": "速度不快、不急躁"
+    },
+    "options": [
+      {
+        "id": "s1-q01-opt1",
+        "text": "輕輕的",
+        "zhuyin": "ㄑㄧㄥ ㄑㄧㄥ ˙ㄉㄜ",
+        "isCorrect": true,
+        "hint": "答對了！小貓怕驚動小鳥，所以「輕輕的」靠過去！"
+      },
+      {
+        "id": "s1-q01-opt2",
+        "text": "大大的",
+        "zhuyin": "ㄉㄚˋ ㄉㄚˋ ˙ㄉㄜ",
+        "isCorrect": false,
+        "hint": "「大大的」通常形容外表體積，動作輕巧要用「輕輕的」喔！"
+      },
+      {
+        "id": "s1-q01-opt3",
+        "text": "紅紅的",
+        "zhuyin": "ㄏㄨㄥˊ ㄏㄨㄥˊ ˙ㄉㄜ",
+        "isCorrect": false,
+        "hint": "「紅紅的」是形容顏色，形容動作輕聲細步要選「輕輕的」！"
+      }
+    ],
+    "audioPromptText": "請依照課文句型慢慢的走，選出最合適的疊字詞放入空格中：小花貓看見小鳥，空格靠了過去。"
+  },
+  {
+    "id": "s1-q02",
+    "unitId": 1,
+    "lessonId": 2,
+    "focusType": "syntax",
+    "mechanicType": "drag-slot",
+    "prompt": "運用「一邊……一邊……」複句，在同一個時間完成兩件事，哪一個句子最通順？",
+    "sentenceTemplate": "假日早晨，爸爸[___]，一邊聽廣播新聞。",
+    "targetWord": {
+      "char": "餐",
+      "zhuyin": "ㄘㄢ",
+      "radical": "食",
+      "strokeCount": 7,
+      "totalStrokes": 16,
+      "meaning": "飯食，如早餐、午餐"
+    },
+    "options": [
+      {
+        "id": "s1-q02-opt1",
+        "text": "一邊煎雞蛋",
+        "zhuyin": "ㄧ ㄅㄧㄢ ㄐㄧㄢ ㄐㄧ ㄉㄢˋ",
+        "isCorrect": true,
+        "hint": "很棒！煎蛋和聽廣播可以同時進行，用「一邊…一邊…」最合適！"
+      },
+      {
+        "id": "s1-q02-opt2",
+        "text": "一邊呼呼大睡",
+        "zhuyin": "ㄧ ㄅㄧㄢ ㄏㄨ ㄏㄨ ㄉㄚˋ ㄕㄨㄟˋ",
+        "isCorrect": false,
+        "hint": "睡覺時就不能專心聽廣播新聞了，兩件事要能在同時間一起做喔！"
+      },
+      {
+        "id": "s1-q02-opt3",
+        "text": "一邊去學校",
+        "zhuyin": "ㄧ ㄅㄧㄢ ㄑㄩˋ ㄒㄩㄝˊ ㄒㄧㄠˋ",
+        "isCorrect": false,
+        "hint": "去學校和在廚房做早餐情境不同，選「一邊煎雞蛋」最生活化！"
+      }
+    ],
+    "audioPromptText": "假日早晨，爸爸空格，一邊聽廣播新聞。"
+  },
+  {
+    "id": "s1-q03",
+    "unitId": 1,
+    "lessonId": 1,
+    "focusType": "components",
+    "mechanicType": "choice",
+    "prompt": "「芽」和「苗」這兩個字，上半部都有相同的「艸部（艹）」，它們的字義通常和什麼相關？",
+    "targetWord": {
+      "char": "新",
+      "zhuyin": "ㄒㄧㄣ",
+      "radical": "斤",
+      "strokeCount": 9,
+      "totalStrokes": 13,
+      "meaning": "剛出現的、剛開始的"
+    },
+    "options": [
+      {
+        "id": "s1-q03-opt1",
+        "text": "植物幼小的嫩葉或嫩莖",
+        "zhuyin": "ㄓˊ ㄨˋ ㄧㄡˋ ㄒㄧㄠˇ ˙ㄉㄜ ㄋㄣˋ ㄧㄝˋ",
+        "isCorrect": true,
+        "hint": "答對了！嫩芽和幼苗都是植物初生時的可愛模樣！"
+      },
+      {
+        "id": "s1-q03-opt2",
+        "text": "天空中的雨水與雷電",
+        "zhuyin": "ㄊㄧㄢ ㄎㄨㄥ ㄓㄨㄥ ˙ㄉㄜ ㄩˇ ㄕㄨㄟˇ",
+        "isCorrect": false,
+        "hint": "雨水與雷電通常是「雨部」喔！草字頭表示植物。"
+      },
+      {
+        "id": "s1-q03-opt3",
+        "text": "跑步與跳躍的動作",
+        "zhuyin": "ㄆㄠˇ ㄅㄨˋ ㄩˇ ㄊㄧㄠˋ ㄩㄝˋ",
+        "isCorrect": false,
+        "hint": "跑步跳躍是「足部」喔！"
+      }
+    ],
+    "audioPromptText": "芽和苗這兩個字，上半部都有相同的草部，它們的字義通常和什麼相關？"
+  },
+  {
+    "id": "s1-q04",
+    "unitId": 1,
+    "lessonId": 3,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "「走過小巷」中，「街」和「巷」都是生活的道路。「街」的部首是什麼？",
+    "targetWord": {
+      "char": "街",
+      "zhuyin": "ㄐㄧㄝ",
+      "radical": "行",
+      "strokeCount": 6,
+      "totalStrokes": 12,
+      "meaning": "供人車通行的寬闊道路"
+    },
+    "options": [
+      {
+        "id": "s1-q04-opt1",
+        "text": "行部",
+        "zhuyin": "ㄒㄧㄥˊ ㄅㄨˋ",
+        "isCorrect": true,
+        "hint": "太厲害了！「街」是左右兩側夾著中間「圭」的行部字！"
+      },
+      {
+        "id": "s1-q04-opt2",
+        "text": "土部",
+        "zhuyin": "ㄊㄨˇ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "中間的「圭」雖然有土，但街道代表讓人「行」走的路，所以部首在外圍兩側的「行部」！"
+      },
+      {
+        "id": "s1-q04-opt3",
+        "text": "彳部",
+        "zhuyin": "ㄔˋ ㄅㄨˋ",
+        "isCorrect": false,
+        "hint": "注意看右邊還有「亍」，左「彳」右「亍」合起來是完整的「行部」喔！"
+      }
+    ],
+    "audioPromptText": "街這個字的部首是什麼呢？"
+  },
+  {
+    "id": "s1-q05",
+    "unitId": 1,
+    "lessonId": 2,
+    "focusType": "syntax",
+    "mechanicType": "drag-slot",
+    "prompt": "選出最優美的疊字詞，讓動作聽起來很有節奏感：",
+    "sentenceTemplate": "清晨的小雨[___]落在屋頂上，像一首好聽的歌。",
+    "options": [
+      {
+        "id": "s1-q05-opt1",
+        "text": "細細的",
+        "zhuyin": "ㄒㄧˋ ㄒㄧˋ ˙ㄉㄜ",
+        "isCorrect": true,
+        "hint": "真有詩意！「細細的」描繪出柔和朦朧的晨雨！"
+      },
+      {
+        "id": "s1-q05-opt2",
+        "text": "快快的",
+        "zhuyin": "ㄎㄨㄞˋ ㄎㄨㄞˋ ˙ㄉㄜ",
+        "isCorrect": false,
+        "hint": "「快快的」缺少了晨雨細緻溫柔的感覺喔，選「細細的」更好！"
+      },
+      {
+        "id": "s1-q05-opt3",
+        "text": "高高的",
+        "zhuyin": "ㄍㄠ ㄍㄠ ˙ㄉㄜ",
+        "isCorrect": false,
+        "hint": "高高的是形容位置或身高，形容雨絲要用「細細的」！"
+      }
+    ],
+    "audioPromptText": "清晨的小雨空格落在屋頂上，像一首好聽的歌。"
+  },
+  {
+    "id": "s1-q06",
+    "unitId": 1,
+    "lessonId": 1,
+    "focusType": "radical",
+    "mechanicType": "choice",
+    "prompt": "「江」、「河」、「海」、「湖」這四個字，部首都是「水部（氵）」，它們通常都具有什麼共通特性？",
+    "options": [
+      {
+        "id": "s1-q06-opt1",
+        "text": "都和大地上的水域或流動的水流有關",
+        "zhuyin": "ㄉㄡ ㄏㄢˋ ㄕㄨㄟˇ ㄩˋ ㄧㄡˇ ㄍㄨㄢ",
+        "isCorrect": true,
+        "hint": "沒錯！漢字的形旁（部首）能幫我們快速歸納事物的性質！"
+      },
+      {
+        "id": "s1-q06-opt2",
+        "text": "都代表天空上的白色雲朵",
+        "zhuyin": "ㄉㄡ ㄉㄞˋ ㄅㄧㄠˇ ㄅㄞˊ ㄩㄣˊ",
+        "isCorrect": false,
+        "hint": "雲朵在天上，江河湖海都是地面上的水域喔！"
+      },
+      {
+        "id": "s1-q06-opt3",
+        "text": "都代表熱熱燃燒的火焰",
+        "zhuyin": "ㄉㄡ ㄉㄞˋ ㄅㄧㄠˇ ㄏㄨㄛˇ ㄧㄢˋ",
+        "isCorrect": false,
+        "hint": "火焰是「火部（灬）」，三點水代表清涼的水！"
+      }
+    ],
+    "audioPromptText": "江、河、海、湖這四個字，部首都是水部，它們通常都具有什麼共通特性？"
+  }
+]
