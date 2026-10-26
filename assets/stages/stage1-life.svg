@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none">
+  <!-- Morning Kitchen Palette -->
+  <rect width="640" height="360" fill="#FEF3C7"/>
+  <!-- Kitchen Window with Sunbeams -->
+  <rect x="220" y="40" width="200" height="150" rx="16" fill="#BAE6FD" stroke="#FDE68A" stroke-width="8"/>
+  <line x1="320" y1="40" x2="320" y2="190" stroke="#FDE68A" stroke-width="6"/>
+  <line x1="220" y1="115" x2="420" y2="115" stroke="#FDE68A" stroke-width="6"/>
+  <!-- Warm Cozy Kitchen Table -->
+  <path d="M0 240 L640 240 L640 360 L0 360 Z" fill="#FDE68A"/>
+  <rect x="80" y="220" width="480" height="40" rx="8" fill="#F59E0B"/>
+  <!-- Delicious Morning Breakfast: Plate, Toast, Fried Egg, Milk -->
+  <ellipse cx="260" cy="270" rx="70" ry="35" fill="#FFFFFF" stroke="#FCD34D" stroke-width="4"/>
+  <!-- Toast Slice -->
+  <rect x="220" y="250" width="45" height="35" rx="6" fill="#D97706"/>
+  <rect x="225" y="254" width="35" height="27" rx="4" fill="#FBBF24"/>
+  <!-- Sunny-side-up Egg -->
+  <ellipse cx="285" cy="270" rx="22" ry="16" fill="#FFFFFF"/>
+  <circle cx="285" cy="270" r="10" fill="#F59E0B"/>
+  <!-- Glass of Fresh Milk -->
+  <path d="M370 230 L395 230 L390 285 L375 285 Z" fill="#FFFFFF" stroke="#93C5FD" stroke-width="3"/>
+  <!-- Little Strawberry Jam Pot -->
+  <rect x="420" y="240" width="36" height="36" rx="8" fill="#F43F5E"/>
+  <rect x="416" y="235" width="44" height="8" rx="3" fill="#FFE4E6"/>
+</svg>

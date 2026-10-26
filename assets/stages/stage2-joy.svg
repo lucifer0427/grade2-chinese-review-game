@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none">
+  <!-- Autumn Persimmon Festival Palette -->
+  <rect width="640" height="360" fill="#FFFBEB"/>
+  <path d="M0 0 L640 0 L640 200 L0 200 Z" fill="#BAE6FD"/>
+  <!-- Traditional Courtyard Brick Wall -->
+  <rect x="0" y="180" width="640" height="60" fill="#EA580C"/>
+  <rect x="0" y="240" width="640" height="120" fill="#FED7AA"/>
+  <!-- Round Bamboo Drying Trays (Bamboo Sieve) -->
+  <ellipse cx="200" cy="280" rx="100" ry="45" fill="#D97706" stroke="#92400E" stroke-width="4"/>
+  <ellipse cx="200" cy="280" rx="92" ry="40" fill="#FDE68A"/>
+  <!-- Golden Autumn Persimmons on Left Tray -->
+  <circle cx="160" cy="275" r="14" fill="#EA580C"/>
+  <circle cx="190" cy="270" r="14" fill="#F97316"/>
+  <circle cx="220" cy="272" r="14" fill="#FB923C"/>
+  <circle cx="175" cy="285" r="14" fill="#FB923C"/>
+  <circle cx="205" cy="287" r="14" fill="#EA580C"/>
+  <circle cx="235" cy="282" r="14" fill="#F97316"/>
+  <!-- Second Bamboo Tray on Right -->
+  <ellipse cx="440" cy="280" rx="100" ry="45" fill="#D97706" stroke="#92400E" stroke-width="4"/>
+  <ellipse cx="440" cy="280" rx="92" ry="40" fill="#FDE68A"/>
+  <circle cx="400" cy="275" r="14" fill="#FB923C"/>
+  <circle cx="430" cy="270" r="14" fill="#EA580C"/>
+  <circle cx="460" cy="272" r="14" fill="#F97316"/>
+  <circle cx="415" cy="285" r="14" fill="#F97316"/>
+  <circle cx="445" cy="287" r="14" fill="#FB923C"/>
+  <circle cx="475" cy="282" r="14" fill="#EA580C"/>
+  <!-- Autumn Breeze Swirls -->
+  <path d="M100 100 Q180 70 260 110" stroke="#FDE68A" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <path d="M380 90 Q460 60 540 100" stroke="#FDE68A" stroke-width="6" stroke-linecap="round" fill="none"/>
+</svg>

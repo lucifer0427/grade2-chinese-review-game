@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" fill="none">
+  <!-- Winter Sunset Wetland -->
+  <defs>
+    <linearGradient id="wetland" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FBCFE8"/>
+      <stop offset="60%" stop-color="#FED7AA"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#wetland)"/>
+  <!-- Distant Reeds and Wetland Shallows -->
+  <path d="M0 250 Q160 230 320 260 T640 240 L640 360 L0 360 Z" fill="#0284C7"/>
+  <!-- Black-faced Spoonbill Bird in Flight -->
+  <g transform="translate(240, 90)">
+    <!-- White Body & Wing -->
+    <ellipse cx="80" cy="60" rx="45" ry="22" fill="#FFFFFF"/>
+    <!-- Wings spread -->
+    <path d="M75 55 Q90 10 135 15 Q100 45 80 55 Z" fill="#F8FAFC"/>
+    <path d="M65 60 Q50 20 15 30 Q50 55 70 60 Z" fill="#F1F5F9"/>
+    <!-- Black Spoon-shaped Bill (Beak) -->
+    <path d="M120 62 L155 60 Q170 55 170 66 Q170 75 155 70 L120 66 Z" fill="#1E293B"/>
+    <!-- Red Postman Ribbon with Festive Holiday Letter -->
+    <path d="M85 70 Q95 85 105 80" stroke="#EF4444" stroke-width="4" fill="none"/>
+    <rect x="95" y="80" width="24" height="16" rx="3" fill="#FEF3C7" stroke="#EF4444" stroke-width="1.5"/>
+    <line x1="95" y1="80" x2="107" y2="90" stroke="#EF4444" stroke-width="1.5"/>
+    <line x1="119" y1="80" x2="107" y2="90" stroke="#EF4444" stroke-width="1.5"/>
+  </g>
+</svg>
